@@ -14,8 +14,6 @@ public class Sindico {
 
     @Id
     private String id;
-    private String nome;
     private String cpf;
-    private String telefone;
     private String idCondominio;
 }

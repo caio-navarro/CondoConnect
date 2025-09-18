@@ -14,8 +14,13 @@ public class Usuario {
 
     @Id
     private String id;
+    private String nome;
     private String email;
     private String senha;
+    private String telefone;
     private String role;
     private String refId;
+
+
+
 }
