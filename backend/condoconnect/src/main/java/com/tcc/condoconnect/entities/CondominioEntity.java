@@ -1,5 +1,8 @@
 package com.tcc.condoconnect.entities;
 
+import com.tcc.condoconnect.entities.SubEntities.Email;
+import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.EnderecoCondominio;
 import lombok.*;
 
@@ -12,15 +15,32 @@ public class CondominioEntity {
 
     private String id;
     private String codigo;
-    private String nome;
+    private Nome nome = new Nome();
     private String cnpj;
-    private String email;
     private EnderecoCondominio endereco;
     private String status = "ativo";
 
     public void validar(){
         validarCnpj(this.cnpj);
     }
+
+    public static CondominioEntity toCondominio(Condominio condominio){
+        CondominioEntity condominioEntity = new CondominioEntity();
+
+        condominioEntity.setId(condominio.getId());
+        condominioEntity.setCodigo(condominio.getCodigo());
+
+        Nome nome = new Nome();
+        nome.setNome(condominio.getNome());
+
+        condominioEntity.setCnpj(condominio.getCnpj());
+
+        condominioEntity.setEndereco(condominio.getEndereco());
+        condominioEntity.setStatus(condominio.getStatus());
+
+        return condominioEntity;
+    }
+
 
     public static String validarCnpj(String cnpj) {
         cnpj = cnpj.replaceAll("[^\\d]", "");
