@@ -3,6 +3,7 @@ package com.tcc.condoconnect.models;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -14,8 +15,9 @@ public class Sindico {
 
     @Id
     private String id;
-    private String nome;
-    private String cpf;
-    private String telefone;
-    private String idCondominio;
+    private String idSindico; // quem criou
+    private String idCondominio; // para qual condomínio
+    private String titulo;
+    private String descricao;
+    private Date dataCriacao;
 }
