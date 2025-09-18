@@ -14,9 +14,7 @@ public class Morador {
 
     @Id
     private String id;
-    private String nome;
     private String cpf;
-    private String telefone;
     private String codigoCondominio;
     private EnderecoMorador endereco;
 }

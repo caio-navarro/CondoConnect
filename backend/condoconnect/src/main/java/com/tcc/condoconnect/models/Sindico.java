@@ -15,9 +15,6 @@ public class Sindico {
 
     @Id
     private String id;
-    private String idSindico; // quem criou
-    private String idCondominio; // para qual condomínio
-    private String titulo;
-    private String descricao;
-    private Date dataCriacao;
+    private String cpf;
+    private String idCondominio;
 }
