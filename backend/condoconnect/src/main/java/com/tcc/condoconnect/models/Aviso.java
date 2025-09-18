@@ -4,20 +4,21 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "condominios")
-public class CondominioModel {
+@Document(collection = "avisos")
+public class Aviso {
 
     @Id
     private String id;
-    private String codigo;
-    private String nome;
-    private String cnpj;
-    private EnderecoCondominio endereco;
-    @Builder.Default
-    private String status = "ativo";
+    private String idSindico; // quem criou
+    private String idCondominio; // para qual condomínio
+    private String titulo;
+    private String descricao;
+    private Date dataCriacao;
 }

@@ -9,14 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "moradores")
-public class MoradorModel {
+@Document(collection = "espacos_comum")
+public class EspacoComum {
 
     @Id
     private String id;
     private String nome;
-    private String cpf;
-    private String telefone;
-    private String codigoCondominio;
-    private EnderecoMorador endereco;
+    private String descricao;
+    private String idCondominio;
 }

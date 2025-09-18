@@ -16,7 +16,7 @@ public class CondominioEntity {
     private String cnpj;
     private String email;
     private EnderecoCondominio endereco;
-    private boolean status = true;
+    private String status = "ativo";
 
     public void validar(){
         validarCnpj(this.cnpj);
