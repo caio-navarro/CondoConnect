@@ -1,6 +1,9 @@
 package com.tcc.condoconnect.entities;
 
+import com.tcc.condoconnect.entities.SubEntities.Email;
+import com.tcc.condoconnect.entities.SubEntities.Nome;
 import com.tcc.condoconnect.models.EnderecoMorador;
+import com.tcc.condoconnect.models.Morador;
 import lombok.*;
 
 @Getter
@@ -11,15 +14,23 @@ import lombok.*;
 public class MoradorEntity {
 
     private String id;
-    private String nome;
-    private String email;
     private String cpf;
-    private String telefone;
     private String codigoCondominio;
     private EnderecoMorador endereco;
 
     public void validar(){
         validarCpf(this.cpf);
+    }
+
+    public static MoradorEntity toMorador(Morador morador) {
+        MoradorEntity moradorEntity = new MoradorEntity();
+
+        moradorEntity.setId(morador.getId());
+        moradorEntity.setCpf(morador.getCpf());
+        moradorEntity.setCodigoCondominio(morador.getCodigoCondominio());
+        moradorEntity.setEndereco(morador.getEndereco());
+
+        return moradorEntity;
     }
 
     public static String validarCpf(String cpf) {
