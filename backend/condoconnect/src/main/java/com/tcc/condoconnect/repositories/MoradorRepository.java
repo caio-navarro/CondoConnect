@@ -1,7 +1,9 @@
 package com.tcc.condoconnect.repositories;
 
 import com.tcc.condoconnect.models.Morador;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MoradorRepository extends MongoRepository<Morador, String> {
+@Repository
+public interface MoradorRepository extends JpaRepository<Morador, Long> {
 }

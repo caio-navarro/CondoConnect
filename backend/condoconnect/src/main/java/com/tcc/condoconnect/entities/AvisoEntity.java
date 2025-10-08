@@ -2,30 +2,32 @@ package com.tcc.condoconnect.entities;
 
 
 import com.tcc.condoconnect.models.Aviso;
+import com.tcc.condoconnect.models.Condominio;
+import com.tcc.condoconnect.models.Sindico;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AvisoEntity {
 
-    private String id;
-    private String idSindico; // quem criou
-    private String idCondominio; // para qual condomínio
+    private Long id;
+    private Sindico sindico; // quem criou
+    private Condominio condominio; // para qual condomínio
     private String titulo;
     private String descricao;
-    private Date dataCriacao;
+    private LocalDateTime dataCriacao;
 
     public static AvisoEntity toAviso(Aviso aviso) {
         AvisoEntity avisoEntity = new AvisoEntity();
 
         avisoEntity.setId(aviso.getId());
-        avisoEntity.setIdSindico(aviso.getIdSindico());
-        avisoEntity.setIdCondominio(aviso.getIdCondominio());
+        avisoEntity.setSindico(aviso.getSindico());
+        avisoEntity.setCondominio(aviso.getCondominio());
         avisoEntity.setTitulo(aviso.getTitulo());
         avisoEntity.setDescricao(aviso.getDescricao());
         avisoEntity.setDataCriacao(aviso.getDataCriacao());

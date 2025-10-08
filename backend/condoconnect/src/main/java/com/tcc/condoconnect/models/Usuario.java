@@ -1,26 +1,24 @@
 package com.tcc.condoconnect.models;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Document(collection = "usuarios")
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String email;
     private String senha;
     private String telefone;
-    private String role;
-    private String refId;
-
-
+    private String role; // precisa ser enum
+    private Long idReferencia; //id do morador ou sindico
 
 }

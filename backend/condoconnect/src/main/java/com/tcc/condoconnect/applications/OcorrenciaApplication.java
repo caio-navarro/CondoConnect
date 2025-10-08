@@ -21,7 +21,7 @@ public class OcorrenciaApplication {
         return ocorrenciaRepository.save(ocorrencia);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         ocorrenciaRepository.deleteById(id);
     }
 

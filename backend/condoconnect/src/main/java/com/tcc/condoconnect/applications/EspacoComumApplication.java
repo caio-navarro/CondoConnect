@@ -21,7 +21,7 @@ public class EspacoComumApplication {
         return espacoComumRepository.save(espacoComum);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         espacoComumRepository.deleteById(id);
     }
 

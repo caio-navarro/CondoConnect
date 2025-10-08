@@ -1,23 +1,28 @@
 package com.tcc.condoconnect.models;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Document(collection = "reservas_espaco")
+@Entity
+@Table(name = "reserva_espaco")
 public class ReservaEspaco {
 
     @Id
-    private String id;
-    private String idEspaco; // espaço reservado
-    private String idMorador; // quem fez a reserva
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "id_espaco")
+    private EspacoComum espaco; // espaço reservado
+
+    @ManyToOne
+    @JoinColumn(name = "id_morador")
+    private Morador morador; // quem fez a reserva
     private Date dataInicio;
     private Date dataFim;
     private String status; // "PENDENTE", "APROVADO", "CANCELADO"

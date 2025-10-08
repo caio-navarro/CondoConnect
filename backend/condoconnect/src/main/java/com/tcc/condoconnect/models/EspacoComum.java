@@ -1,19 +1,19 @@
 package com.tcc.condoconnect.models;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Document(collection = "espacos_comum")
+@Entity
+@Table(name = "espaco_comum")
 public class EspacoComum {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String descricao;
     private String idCondominio;

@@ -1,7 +1,9 @@
 package com.tcc.condoconnect.repositories;
 
 import com.tcc.condoconnect.models.Usuario;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UsuarioRepository extends MongoRepository<Usuario, String> {
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 }

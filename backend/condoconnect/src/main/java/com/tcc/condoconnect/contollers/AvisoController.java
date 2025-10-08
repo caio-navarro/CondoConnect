@@ -32,7 +32,7 @@ public class AvisoController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletar(@PathVariable String id){
+    public void deletar(@PathVariable Long id){
         avisoApplication.deletar(id);
     }
 }

@@ -1,20 +1,24 @@
 package com.tcc.condoconnect.models;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "moradores")a
+@Entity
+@Table(name = "moradores")
 public class Morador {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String cpf;
     private String codigoCondominio;
+
+    @OneToOne
+    @JoinColumn(name = "id_endereco")
     private EnderecoMorador endereco;
 }
