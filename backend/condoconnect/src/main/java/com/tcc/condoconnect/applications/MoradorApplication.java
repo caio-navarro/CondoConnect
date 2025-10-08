@@ -21,7 +21,7 @@ public class MoradorApplication {
         return moradorRepository.save(morador);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         moradorRepository.deleteById(id);
     }
 

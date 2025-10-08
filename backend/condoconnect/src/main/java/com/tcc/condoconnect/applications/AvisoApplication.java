@@ -22,7 +22,7 @@ public class AvisoApplication {
         return avisoRepository.save(aviso);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         avisoRepository.deleteById(id);
     }
 

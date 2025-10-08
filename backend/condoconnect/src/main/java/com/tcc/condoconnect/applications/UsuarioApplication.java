@@ -22,7 +22,7 @@ public class UsuarioApplication {
         return usuarioRepository.save(usuario);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         usuarioRepository.deleteById(id);
     }
 

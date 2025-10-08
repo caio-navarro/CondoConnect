@@ -1,24 +1,30 @@
 package com.tcc.condoconnect.models;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Document(collection = "avisos")
+@Entity
+@Table(name = "avisos")
 public class Aviso {
 
     @Id
-    private String id;
-    private String idSindico; // quem criou
-    private String idCondominio; // para qual condomínio
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_sindico")
+    private Sindico sindico; // quem criou
+
+    @ManyToOne
+    @JoinColumn(name = "id_sindico")
+    private Condominio condominio; // para qual condomínio
+
     private String titulo;
     private String descricao;
-    private Date dataCriacao;
+    private LocalDateTime dataCriacao;
 }

@@ -20,7 +20,7 @@ public class CondominioApplication {
         return condominioRepository.save(condominio);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         condominioRepository.deleteById(id);
     }
 

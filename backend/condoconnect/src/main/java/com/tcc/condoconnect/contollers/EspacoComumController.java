@@ -31,7 +31,7 @@ public class EspacoComumController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletar(@PathVariable String id){
+    public void deletar(@PathVariable Long id){
         espacoApplication.deletar(id);
     }
 }

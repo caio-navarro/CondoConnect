@@ -30,7 +30,7 @@ public class ReservaEspacoController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletar(@PathVariable String id){
+    public void deletar(@PathVariable Long id){
         reservaApplication.deletar(id);
     }
 }

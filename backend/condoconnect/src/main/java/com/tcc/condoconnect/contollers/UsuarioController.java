@@ -30,7 +30,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletar(@PathVariable String id){
+    public void deletar(@PathVariable Long id){
         usuarioApplication.deletar(id);
     }
 }

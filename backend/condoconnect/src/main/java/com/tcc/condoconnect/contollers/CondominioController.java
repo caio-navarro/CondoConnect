@@ -31,7 +31,7 @@ public class CondominioController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletar(@PathVariable String id){
+    public void deletar(@PathVariable Long id){
         condominioApplication.deletar(id);
     }
 }

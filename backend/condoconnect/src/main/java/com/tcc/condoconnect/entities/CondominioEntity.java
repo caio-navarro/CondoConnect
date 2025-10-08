@@ -1,6 +1,5 @@
 package com.tcc.condoconnect.entities;
 
-import com.tcc.condoconnect.entities.SubEntities.Email;
 import com.tcc.condoconnect.entities.SubEntities.Nome;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.EnderecoCondominio;
@@ -10,7 +9,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class CondominioEntity {
 
     private String id;

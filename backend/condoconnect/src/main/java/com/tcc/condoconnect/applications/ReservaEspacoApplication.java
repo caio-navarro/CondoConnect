@@ -21,7 +21,7 @@ public class ReservaEspacoApplication {
         return reservaEspacoRepository.save(reservaEspaco);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         reservaEspacoRepository.deleteById(id);
     }
 

@@ -1,7 +1,9 @@
 package com.tcc.condoconnect.repositories;
 
 import com.tcc.condoconnect.models.Aviso;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AvisoRepository extends MongoRepository<Aviso, String> {
+@Repository
+public interface AvisoRepository extends JpaRepository<Aviso, Long> {
 }

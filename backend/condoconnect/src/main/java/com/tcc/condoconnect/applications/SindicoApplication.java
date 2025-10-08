@@ -21,7 +21,7 @@ public class SindicoApplication {
         return sindicoRepository.save(sindico);
     }
 
-    public void deletar(String id) {
+    public void deletar(Long id) {
         sindicoRepository.deleteById(id);
     }
 
