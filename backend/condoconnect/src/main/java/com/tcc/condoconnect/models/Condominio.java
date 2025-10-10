@@ -1,5 +1,7 @@
 package com.tcc.condoconnect.models;
 
+import com.tcc.condoconnect.enums.Role;
+import com.tcc.condoconnect.enums.StatusCondominio;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,12 +16,14 @@ public class Condominio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String codigo;
+    private Long codigo;
     private String nome;
     private String cnpj;
+
+    private Role role = Role.CONDOMINIO;
 
     @OneToOne
     @JoinColumn(name = "id_endereco_condominio")
     private EnderecoCondominio endereco;
-    private String status = "ativo";
+    private StatusCondominio status = StatusCondominio.ATIVO;
 }

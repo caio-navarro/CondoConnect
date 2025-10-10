@@ -3,6 +3,9 @@ package com.tcc.condoconnect.entities;
 import com.tcc.condoconnect.entities.SubEntities.Email;
 import com.tcc.condoconnect.entities.SubEntities.Nome;
 import com.tcc.condoconnect.entities.SubEntities.Telefone;
+import com.tcc.condoconnect.models.Condominio;
+import com.tcc.condoconnect.models.Morador;
+import com.tcc.condoconnect.models.Sindico;
 import com.tcc.condoconnect.models.Usuario;
 import lombok.*;
 
@@ -10,19 +13,18 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class UsuarioEntity {
-    private String id;
+    private Long id;
     private Email email = new Email();
     private Nome nome = new Nome();
     private String senha;
     private Telefone telefone = new Telefone();
-    private String role;
-    private String refId;
+    private Morador morador;
+    private Sindico sindico;
+    private Condominio condominio;
 
     public static UsuarioEntity toUsuario(Usuario usuario) {
         UsuarioEntity usuarioEntity = new UsuarioEntity();
-
 
         usuarioEntity.setId(usuario.getId());
 
@@ -37,9 +39,9 @@ public class UsuarioEntity {
         Telefone telefone = new Telefone();
         telefone.setTelefone(usuario.getTelefone());
 
-        usuarioEntity.setRole(usuario.getRole());
-
-        usuarioEntity.setRefId(usuario.getRefId());
+        usuarioEntity.setCondominio(usuario.getCondominio());
+        usuarioEntity.setMorador(usuario.getMorador());
+        usuarioEntity.setSindico(usuario.getSindico());
 
         return usuarioEntity;
     }

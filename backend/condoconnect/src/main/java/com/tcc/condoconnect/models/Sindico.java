@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.models;
 
+import com.tcc.condoconnect.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +16,8 @@ public class Sindico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cpf;
+
+    private Role role = Role.SINDICO;
 
     @OneToOne
     @JoinColumn(name = "id_condominio")

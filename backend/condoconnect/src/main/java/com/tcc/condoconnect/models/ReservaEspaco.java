@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.models;
 
+import com.tcc.condoconnect.enums.StatusReserva;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
@@ -25,5 +26,5 @@ public class ReservaEspaco {
     private Morador morador; // quem fez a reserva
     private Date dataInicio;
     private Date dataFim;
-    private String status; // "PENDENTE", "APROVADO", "CANCELADO"
+    private StatusReserva status = StatusReserva.PENDENTE;
 }

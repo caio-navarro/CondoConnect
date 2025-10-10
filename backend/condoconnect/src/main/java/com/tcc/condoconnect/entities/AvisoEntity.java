@@ -33,7 +33,6 @@ public class AvisoEntity {
         avisoEntity.setDataCriacao(aviso.getDataCriacao());
 
         return avisoEntity;
-
     }
 
 }
