@@ -1,6 +1,8 @@
 package com.tcc.condoconnect.entities;
 
 import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.enums.Role;
+import com.tcc.condoconnect.enums.StatusCondominio;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.EnderecoCondominio;
 import lombok.*;
@@ -11,12 +13,13 @@ import lombok.*;
 @AllArgsConstructor
 public class CondominioEntity {
 
-    private String id;
-    private String codigo;
+    private Long id;
+    private Long codigo;
     private Nome nome = new Nome();
     private String cnpj;
     private EnderecoCondominio endereco;
-    private String status = "ativo";
+    private Role role = Role.CONDOMINIO;
+    private StatusCondominio status = StatusCondominio.ATIVO;
 
     public void validar(){
         validarCnpj(this.cnpj);
@@ -27,6 +30,7 @@ public class CondominioEntity {
 
         condominioEntity.setId(condominio.getId());
         condominioEntity.setCodigo(condominio.getCodigo());
+        condominioEntity.setRole(condominio.getRole());
 
         Nome nome = new Nome();
         nome.setNome(condominio.getNome());

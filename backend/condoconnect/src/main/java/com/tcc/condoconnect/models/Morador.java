@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.models;
 
+import com.tcc.condoconnect.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,7 +8,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "moradores")
 public class Morador {
@@ -16,9 +16,14 @@ public class Morador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cpf;
-    private String codigoCondominio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_condominio")
+    private Condominio condominio;
 
     @OneToOne
     @JoinColumn(name = "id_endereco")
     private EnderecoMorador endereco;
+
+    private Role role = Role.MORADOR;
 }

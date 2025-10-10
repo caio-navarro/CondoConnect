@@ -1,7 +1,7 @@
 package com.tcc.condoconnect.entities;
 
-import com.tcc.condoconnect.entities.SubEntities.Email;
-import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.enums.Role;
+import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.EnderecoMorador;
 import com.tcc.condoconnect.models.Morador;
 import lombok.*;
@@ -10,13 +10,13 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class MoradorEntity {
 
-    private String id;
+    private Long id;
     private String cpf;
-    private String codigoCondominio;
+    private Condominio condominio;
     private EnderecoMorador endereco;
+    private Role role = Role.MORADOR;
 
     public void validar(){
         validarCpf(this.cpf);
@@ -27,8 +27,9 @@ public class MoradorEntity {
 
         moradorEntity.setId(morador.getId());
         moradorEntity.setCpf(morador.getCpf());
-        moradorEntity.setCodigoCondominio(morador.getCodigoCondominio());
+        moradorEntity.setCondominio(morador.getCondominio());
         moradorEntity.setEndereco(morador.getEndereco());
+        moradorEntity.setRole(morador.getRole());
 
         return moradorEntity;
     }

@@ -16,5 +16,8 @@ public class EspacoComum {
     private Long id;
     private String nome;
     private String descricao;
-    private String idCondominio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_condominio")
+    private Condominio condominio;
 }

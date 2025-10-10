@@ -18,7 +18,16 @@ public class Usuario {
     private String email;
     private String senha;
     private String telefone;
-    private String role; // precisa ser enum
-    private Long idReferencia; //id do morador ou sindico
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_morador")
+    private Morador morador;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_sindico")
+    private Sindico sindico;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_condominio")
+    private Condominio condominio;
 }

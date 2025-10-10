@@ -21,7 +21,7 @@ public class Aviso {
     private Sindico sindico; // quem criou
 
     @ManyToOne
-    @JoinColumn(name = "id_sindico")
+    @JoinColumn(name = "id_condominio")
     private Condominio condominio; // para qual condomínio
 
     private String titulo;

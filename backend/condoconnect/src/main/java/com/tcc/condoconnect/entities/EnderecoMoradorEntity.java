@@ -7,15 +7,15 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class EnderecoMoradorEntity {
+    private Long id;
     private String rua;     // rua interna do condomínio
     private String numero;  // número da casa
 
 
     public static EnderecoMoradorEntity toEnderecoMorador(EnderecoMorador enderecoMorador) {
         EnderecoMoradorEntity enderecoMoradorEntity = new EnderecoMoradorEntity();
-
+        enderecoMoradorEntity.setId(enderecoMorador.getId());
         enderecoMoradorEntity.setRua(enderecoMoradorEntity.getRua());
         enderecoMoradorEntity.setNumero(enderecoMorador.getNumero());
 

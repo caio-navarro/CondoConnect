@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.entities;
 
 import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.EspacoComum;
 import lombok.*;
 
@@ -8,12 +9,11 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class EspacoComumEntity {
-    private String id;
+    private Long id;
     private Nome nome = new Nome();
     private String descricao;
-    private String idCondominio;
+    private Condominio condominio;
 
 
     public static EspacoComumEntity toEspacoComum(EspacoComum espacoComum) {
@@ -26,7 +26,7 @@ public class EspacoComumEntity {
 
         espacoComumEntity.setDescricao(espacoComum.getDescricao());
 
-        espacoComumEntity.setIdCondominio(espacoComum.getIdCondominio());
+        espacoComumEntity.setCondominio(espacoComum.getCondominio());
 
         return espacoComumEntity;
     }

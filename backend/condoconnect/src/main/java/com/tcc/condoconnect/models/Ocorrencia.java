@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.models;
 
+import com.tcc.condoconnect.enums.StatusOcorrencia;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
@@ -25,6 +26,6 @@ public class Ocorrencia {
     private Condominio condominio; // para qual condomínio
     private String titulo;
     private String descricao;
-    private String status; // "ABERTO", "EM_ANDAMENTO", "RESOLVIDO"
+    private StatusOcorrencia status = StatusOcorrencia.ABERTO;
     private Date dataCriacao;
 }

@@ -1,20 +1,17 @@
 package com.tcc.condoconnect.entities;
 
-import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.Sindico;
-import com.tcc.condoconnect.models.Usuario;
 import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class SindicoEntity {
-    private String id;
+    private Long id;
     private String cpf;
-    private String idCondominio;
-
+    private Condominio condominio;
 
     public static SindicoEntity toSindico(Sindico sindico) {
         SindicoEntity sindicoEntity = new SindicoEntity();
@@ -23,7 +20,7 @@ public class SindicoEntity {
 
         sindicoEntity.setCpf(sindico.getCpf());
 
-        sindicoEntity.setIdCondominio(sindico.getIdCondominio());
+        sindicoEntity.setCondominio(sindico.getCondominio());
 
         return sindicoEntity;
 
