@@ -14,22 +14,22 @@ public class UsuarioController {
     @Autowired
     private UsuarioApplication usuarioApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Usuario> listar(){
         return usuarioApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public Usuario cadastrar(@RequestBody Usuario usuario){
         return usuarioApplication.cadastrar(usuario);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public Usuario atualizar(@RequestBody Usuario usuario){
         return usuarioApplication.atualizar(usuario);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         usuarioApplication.deletar(id);
     }

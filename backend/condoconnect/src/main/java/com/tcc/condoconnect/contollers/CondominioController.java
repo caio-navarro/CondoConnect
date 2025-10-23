@@ -15,22 +15,22 @@ public class CondominioController {
     @Autowired
     private CondominioApplication condominioApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Condominio> listar(){
         return condominioApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public Condominio cadastrar(@RequestBody Condominio condominio){
         return condominioApplication.cadastrar(condominio);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public Condominio atualizar(@RequestBody Condominio condominio){
         return condominioApplication.atualizar(condominio);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping
     public void deletar(@PathVariable Long id){
         condominioApplication.deletar(id);
     }

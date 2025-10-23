@@ -13,22 +13,22 @@ public class OcorrenciaController {
     @Autowired
     private OcorrenciaApplication ocorrenciaApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Ocorrencia> listar(){
         return ocorrenciaApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public Ocorrencia cadastrar(@RequestBody Ocorrencia ocorrencia){
         return ocorrenciaApplication.cadastrar(ocorrencia);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public Ocorrencia atualizar(@RequestBody Ocorrencia ocorrencia){
         return ocorrenciaApplication.atualizar(ocorrencia);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         ocorrenciaApplication.deletar(id);
     }
