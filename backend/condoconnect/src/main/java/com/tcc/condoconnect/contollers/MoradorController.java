@@ -14,22 +14,22 @@ public class MoradorController {
     @Autowired
     private MoradorApplication moradorApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Morador> listar(){
         return moradorApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public Morador cadastrar(@RequestBody Morador morador){
         return moradorApplication.cadastrar(morador);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public Morador atualizar(@RequestBody Morador morador){
         return moradorApplication.atualizar(morador);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         moradorApplication.deletar(id);
     }

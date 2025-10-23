@@ -16,22 +16,22 @@ public class AvisoController {
     @Autowired
     private AvisoApplication avisoApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Aviso> listar(){
         return avisoApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public Aviso cadastrar(@RequestBody Aviso aviso){
         return avisoApplication.cadastrar(aviso);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public Aviso atualizar(@RequestBody Aviso aviso){
         return avisoApplication.atualizar(aviso);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         avisoApplication.deletar(id);
     }

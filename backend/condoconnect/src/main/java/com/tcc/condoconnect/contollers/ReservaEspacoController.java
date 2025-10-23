@@ -14,22 +14,22 @@ public class ReservaEspacoController {
     @Autowired
     private ReservaEspacoApplication reservaApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<ReservaEspaco> listar(){
         return reservaApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public ReservaEspaco cadastrar(@RequestBody ReservaEspaco reserva){
         return reservaApplication.cadastrar(reserva);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public ReservaEspaco atualizar(@RequestBody ReservaEspaco reserva){
         return reservaApplication.atualizar(reserva);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         reservaApplication.deletar(id);
     }

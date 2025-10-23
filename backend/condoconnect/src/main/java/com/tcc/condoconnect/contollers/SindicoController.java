@@ -14,22 +14,22 @@ public class SindicoController {
     @Autowired
     private SindicoApplication sindicoApplication;
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Sindico> listar(){
         return sindicoApplication.listar();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public Sindico cadastrar(@RequestBody Sindico sindico){
         return sindicoApplication.cadastrar(sindico);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public Sindico atualizar(@RequestBody Sindico sindico){
         return sindicoApplication.atualizar(sindico);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         sindicoApplication.deletar(id);
     }
