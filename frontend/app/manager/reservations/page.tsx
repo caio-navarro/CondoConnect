@@ -1,88 +1,104 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { Calendar, Check, X } from "lucide-react"
-import { ManagerNav } from "@/components/manager-nav"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { useAuth } from "@/lib/auth-context"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Calendar, Check, X } from "lucide-react";
+import { ManagerNav } from "@/components/manager-nav";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useAuth } from "@/lib/auth-context";
 
 interface Reservation {
-  id: string
-  residentId: string
-  residentName: string
-  spaceId: string
-  spaceName: string
-  date: string
-  time: string
-  status: "pending" | "approved" | "rejected"
-  createdAt: string
+  id: string;
+  residentId: string;
+  residentName: string;
+  spaceId: string;
+  spaceName: string;
+  date: string;
+  time: string;
+  status: "pending" | "approved" | "rejected";
+  createdAt: string;
 }
 
 export default function ManagerReservationsPage() {
-  const router = useRouter()
-  const { user, isAuthenticated } = useAuth()
-  const [reservations, setReservations] = useState<Reservation[]>([])
+  const router = useRouter();
+  const { user, isAuthenticated } = useAuth();
+  const [reservations, setReservations] = useState<Reservation[]>([]);
 
   useEffect(() => {
     if (!isAuthenticated || user?.role !== "manager" || !user.approved) {
-      router.push("/login")
-      return
+      router.push("/login");
+      return;
     }
 
-    loadReservations()
-  }, [isAuthenticated, user, router])
+    loadReservations();
+  }, [isAuthenticated, user, router]);
 
   const loadReservations = () => {
-    const allReservations = JSON.parse(localStorage.getItem("condoconnect_reservations") || "[]")
-    setReservations(allReservations)
-  }
+    const allReservations = JSON.parse(
+      localStorage.getItem("condoconnect_reservations") || "[]"
+    );
+    setReservations(allReservations);
+  };
 
   const handleApprove = (reservationId: string) => {
-    const allReservations = JSON.parse(localStorage.getItem("condoconnect_reservations") || "[]")
+    const allReservations = JSON.parse(
+      localStorage.getItem("condoconnect_reservations") || "[]"
+    );
     const updatedReservations = allReservations.map((r: Reservation) =>
-      r.id === reservationId ? { ...r, status: "approved" } : r,
-    )
-    localStorage.setItem("condoconnect_reservations", JSON.stringify(updatedReservations))
-    loadReservations()
-  }
+      r.id === reservationId ? { ...r, status: "approved" } : r
+    );
+    localStorage.setItem(
+      "condoconnect_reservations",
+      JSON.stringify(updatedReservations)
+    );
+    loadReservations();
+  };
 
   const handleReject = (reservationId: string) => {
-    const allReservations = JSON.parse(localStorage.getItem("condoconnect_reservations") || "[]")
+    const allReservations = JSON.parse(
+      localStorage.getItem("condoconnect_reservations") || "[]"
+    );
     const updatedReservations = allReservations.map((r: Reservation) =>
-      r.id === reservationId ? { ...r, status: "rejected" } : r,
-    )
-    localStorage.setItem("condoconnect_reservations", JSON.stringify(updatedReservations))
-    loadReservations()
-  }
+      r.id === reservationId ? { ...r, status: "rejected" } : r
+    );
+    localStorage.setItem(
+      "condoconnect_reservations",
+      JSON.stringify(updatedReservations)
+    );
+    loadReservations();
+  };
 
-  if (!user) return null
+  if (!user) return null;
 
-  const pendingReservations = reservations.filter((r) => r.status === "pending")
-  const processedReservations = reservations.filter((r) => r.status !== "pending")
+  const pendingReservations = reservations.filter(
+    (r) => r.status === "pending"
+  );
+  const processedReservations = reservations.filter(
+    (r) => r.status !== "pending"
+  );
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "approved":
-        return "bg-green-500/10 text-green-600"
+        return "bg-green-500/10 text-green-600";
       case "rejected":
-        return "bg-red-500/10 text-red-600"
+        return "bg-red-500/10 text-red-600";
       default:
-        return "bg-gray-500/10 text-gray-600"
+        return "bg-gray-500/10 text-gray-600";
     }
-  }
+  };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
       case "approved":
-        return "Aprovada"
+        return "Aprovada";
       case "rejected":
-        return "Recusada"
+        return "Recusada";
       default:
-        return status
+        return status;
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-muted">
@@ -91,13 +107,17 @@ export default function ManagerReservationsPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Reservas</h1>
-          <p className="text-muted-foreground">Gerencie as reservas de espaços comuns</p>
+          <p className="text-muted-foreground">
+            Gerencie as reservas de espaços comuns
+          </p>
         </div>
 
         {/* Pending Reservations */}
         {pendingReservations.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-foreground mb-4">Reservas Pendentes</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-4">
+              Reservas Pendentes
+            </h2>
             <div className="grid gap-4">
               {pendingReservations.map((reservation) => (
                 <Card key={reservation.id} className="p-6">
@@ -107,11 +127,18 @@ export default function ManagerReservationsPage() {
                         <Calendar className="h-6 w-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground mb-1">{reservation.spaceName}</h3>
+                        <h3 className="font-semibold text-foreground mb-1">
+                          {reservation.spaceName}
+                        </h3>
                         <p className="text-sm text-muted-foreground mb-1">
-                          {new Date(reservation.date).toLocaleDateString("pt-BR")} às {reservation.time}
+                          {new Date(reservation.date).toLocaleDateString(
+                            "pt-BR"
+                          )}{" "}
+                          às {reservation.time}
                         </p>
-                        <p className="text-sm text-muted-foreground">Solicitado por: {reservation.residentName}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Solicitado por: {reservation.residentName}
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -123,7 +150,11 @@ export default function ManagerReservationsPage() {
                         <Check className="h-4 w-4 mr-2" />
                         Aprovar
                       </Button>
-                      <Button size="sm" variant="destructive" onClick={() => handleReject(reservation.id)}>
+                      <Button
+                        size="sm"
+                        variant="destructive"
+                        onClick={() => handleReject(reservation.id)}
+                      >
                         <X className="h-4 w-4 mr-2" />
                         Recusar
                       </Button>
@@ -137,10 +168,14 @@ export default function ManagerReservationsPage() {
 
         {/* Processed Reservations */}
         <div>
-          <h2 className="text-xl font-semibold text-foreground mb-4">Histórico de Reservas</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-4">
+            Histórico de Reservas
+          </h2>
           {processedReservations.length === 0 ? (
             <Card className="p-8 text-center">
-              <p className="text-muted-foreground">Nenhuma reserva processada ainda</p>
+              <p className="text-muted-foreground">
+                Nenhuma reserva processada ainda
+              </p>
             </Card>
           ) : (
             <div className="grid gap-4">
@@ -153,15 +188,26 @@ export default function ManagerReservationsPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold text-foreground">{reservation.spaceName}</h3>
-                          <span className={`text-xs px-2 py-1 rounded-full ${getStatusColor(reservation.status)}`}>
+                          <h3 className="font-semibold text-foreground">
+                            {reservation.spaceName}
+                          </h3>
+                          <span
+                            className={`text-xs px-2 py-1 rounded-full ${getStatusColor(
+                              reservation.status
+                            )}`}
+                          >
                             {getStatusLabel(reservation.status)}
                           </span>
                         </div>
                         <p className="text-sm text-muted-foreground mb-1">
-                          {new Date(reservation.date).toLocaleDateString("pt-BR")} às {reservation.time}
+                          {new Date(reservation.date).toLocaleDateString(
+                            "pt-BR"
+                          )}{" "}
+                          às {reservation.time}
                         </p>
-                        <p className="text-sm text-muted-foreground">Solicitado por: {reservation.residentName}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Solicitado por: {reservation.residentName}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -172,5 +218,5 @@ export default function ManagerReservationsPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

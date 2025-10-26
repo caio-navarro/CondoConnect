@@ -1,27 +1,40 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { Building2, Home, Calendar, MessageSquare, MapPin, LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useAuth } from "@/lib/auth-context"
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Building2,
+  Home,
+  Calendar,
+  MessageSquare,
+  MapPin,
+  LogOut,
+  AlertOctagonIcon,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth-context";
 
 export function ManagerNav() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const { logout, user } = useAuth()
+  const pathname = usePathname();
+  const router = useRouter();
+  const { logout, user } = useAuth();
 
   const handleLogout = () => {
-    logout()
-    router.push("/")
-  }
+    logout();
+    router.push("/");
+  };
 
   const navItems = [
     { href: "/manager/dashboard", label: "Início", icon: Home },
     { href: "/manager/spaces", label: "Espaços", icon: MapPin },
     { href: "/manager/reservations", label: "Reservas", icon: Calendar },
     { href: "/manager/announcements", label: "Avisos", icon: MessageSquare },
-  ]
+    {
+      href: "/manager/occurrence",
+      label: "Ocorrências",
+      icon: AlertOctagonIcon,
+    },
+  ];
 
   return (
     <nav className="bg-white border-b border-border sticky top-0 z-50">
@@ -30,25 +43,29 @@ export function ManagerNav() {
           <div className="flex items-center gap-8">
             <Link href="/manager/dashboard" className="flex items-center gap-2">
               <Building2 className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold text-primary">CondoConnect</span>
+              <span className="text-xl font-bold text-primary">
+                CondoConnect
+              </span>
             </Link>
 
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {
-                const Icon = item.icon
-                const isActive = pathname === item.href
+                const Icon = item.icon;
+                const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                      isActive ? "bg-primary text-white" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      isActive
+                        ? "bg-primary text-white"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
                     {item.label}
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
@@ -65,5 +82,5 @@ export function ManagerNav() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
