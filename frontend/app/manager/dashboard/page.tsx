@@ -8,12 +8,12 @@ import {
   MessageSquare,
   AlertOctagonIcon,
 } from "lucide-react";
-import { ManagerNav } from "@/components/manager-nav";
+import { ManagerNav as ManagerNavigation } from "@/components/manager-nav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useAuth } from "@/lib/auth-context";
 
-export default function ManagerDashboardPage() {
+export default function ManagerNavPage() {
   const router = useRouter();
   const { user, isAuthenticated } = useAuth();
   const [stats, setStats] = useState({
@@ -60,7 +60,7 @@ export default function ManagerDashboardPage() {
 
   return (
     <div className="min-h-screen bg-muted">
-      <ManagerNav />
+      <ManagerNavigation />
 
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">

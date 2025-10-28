@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useAuth } from "@/lib/auth-context";
 import { Badge } from "@/components/ui/badge";
+import ManagerPendingPage from "../pending/page";
+import ManagerNavPage from "../dashboard/page";
 
 interface Ocorrencia {
   id: string;
@@ -75,7 +77,7 @@ export default function OcorrenciasPage() {
   );
 
   return (
-    <ManagerNav role="manager">
+    <ManagerNav role="manager-nav">
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-foreground mb-2">
