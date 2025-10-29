@@ -54,6 +54,7 @@ public class MoradorEntity {
         return moradorEntity;
     }
 
+
     public void validar() {
         boolean erroCpf = Cpf.validarCpf(this.cpf.getCpf());
         if(!erroCpf) {

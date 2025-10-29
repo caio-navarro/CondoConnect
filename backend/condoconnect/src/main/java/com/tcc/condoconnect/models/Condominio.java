@@ -16,7 +16,7 @@ public class Condominio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long codigo;
+    private String codigo;
     private String nome;
     private String email;
     private String senha;

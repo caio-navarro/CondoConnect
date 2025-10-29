@@ -15,7 +15,7 @@ import lombok.*;
 public class CondominioEntity {
 
     private Long id;
-    private Long codigo;
+    private String codigo;
     private Nome nome = new Nome();
     private String email;
     private Telefone telefone = new Telefone();
