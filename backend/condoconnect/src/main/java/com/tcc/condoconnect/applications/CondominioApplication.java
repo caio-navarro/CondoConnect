@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.applications;
 
+import com.tcc.condoconnect.entities.CondominioEntity;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.repositories.CondominioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Component
 public class CondominioApplication {
+
     @Autowired
     private CondominioRepository condominioRepository;
 
@@ -17,6 +19,9 @@ public class CondominioApplication {
     }
 
     public Condominio cadastrar(Condominio condominio) {
+        CondominioEntity condominioEntity = CondominioEntity.toCondominio(condominio);
+        condominioEntity.validar();
+
         return condominioRepository.save(condominio);
     }
 

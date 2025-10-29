@@ -1,9 +1,8 @@
 package com.tcc.condoconnect.applications;
 
+import com.tcc.condoconnect.entities.MoradorEntity;
 import com.tcc.condoconnect.models.Morador;
-import com.tcc.condoconnect.models.Usuario;
 import com.tcc.condoconnect.repositories.MoradorRepository;
-import com.tcc.condoconnect.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +14,15 @@ public class MoradorApplication {
     @Autowired
     private MoradorRepository moradorRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
     public List<Morador> listar() {
         return moradorRepository.findAll();
     }
 
-    public Morador cadastrar(Morador morador, Usuario usuario) {
+    public Morador cadastrar(Morador morador) {
+        MoradorEntity moradorEntity = MoradorEntity.toMorador(morador);
+        moradorEntity.validar();
 
+        return moradorRepository.save(morador);
     }
 
     public void deletar(Long id) {

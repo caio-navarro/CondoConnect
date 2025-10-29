@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.entities;
 
 import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.entities.SubEntities.Telefone;
 import com.tcc.condoconnect.enums.Role;
 import com.tcc.condoconnect.enums.StatusCondominio;
 import com.tcc.condoconnect.models.Condominio;
@@ -16,14 +17,13 @@ public class CondominioEntity {
     private Long id;
     private Long codigo;
     private Nome nome = new Nome();
+    private String email;
+    private Telefone telefone = new Telefone();
     private String cnpj;
+    private String senha;
     private EnderecoCondominio endereco;
     private Role role = Role.CONDOMINIO;
     private StatusCondominio status = StatusCondominio.ATIVO;
-
-    public void validar(){
-        validarCnpj(this.cnpj);
-    }
 
     public static CondominioEntity toCondominio(Condominio condominio){
         CondominioEntity condominioEntity = new CondominioEntity();
@@ -34,21 +34,26 @@ public class CondominioEntity {
 
         Nome nome = new Nome();
         nome.setNome(condominio.getNome());
+        condominioEntity.setNome(nome);
 
+        Telefone telefone = new Telefone();
+        telefone.setTelefone(condominio.getTelefone());
+        condominioEntity.setTelefone(telefone);
+
+        condominioEntity.setEmail(condominio.getEmail());
         condominioEntity.setCnpj(condominio.getCnpj());
-
+        condominioEntity.setSenha(condominio.getSenha());
         condominioEntity.setEndereco(condominio.getEndereco());
         condominioEntity.setStatus(condominio.getStatus());
 
         return condominioEntity;
     }
 
-
-    public static String validarCnpj(String cnpj) {
+    public static boolean validarCnpj(String cnpj) {
         cnpj = cnpj.replaceAll("[^\\d]", "");
 
         if (cnpj.length() != 14 || cnpj.chars().distinct().count() == 1) {
-            return "CNPJ inválido";
+            return false;
         }
 
         int[] pesos1 = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
@@ -72,9 +77,26 @@ public class CondominioEntity {
 
         if (primeiroDigito != Character.getNumericValue(cnpj.charAt(12)) ||
                 segundoDigito != Character.getNumericValue(cnpj.charAt(13))) {
-            return "CNPJ inválido";
+            return false;
         }
 
-        return null;
+        return true;
+    }
+
+    public void validar() {
+        boolean erroCnpj = validarCnpj(this.cnpj);
+        if(!erroCnpj) {
+            throw new IllegalArgumentException("CNPJ Inválido!");
+        }
+
+        boolean erroNome = Nome.validar(this.nome.getNome());
+        if(!erroNome) {
+            throw new IllegalArgumentException("Nome precisa ter ao menos 4 caracteres!");
+        }
+
+        boolean erroTelefone = Telefone.validar(this.telefone.getTelefone());
+        if(!erroTelefone) {
+            throw new IllegalArgumentException("Telefone precisa ter ao menos 11 caracteres!");
+        }
     }
 }

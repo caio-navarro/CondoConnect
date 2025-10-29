@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.applications;
 
+import com.tcc.condoconnect.entities.SindicoEntity;
 import com.tcc.condoconnect.models.Sindico;
 import com.tcc.condoconnect.repositories.SindicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class SindicoApplication {
     }
 
     public Sindico cadastrar(Sindico sindico) {
+        SindicoEntity sindicoEntity = SindicoEntity.toSindico(sindico);
+        sindicoEntity.validar();
+
         return sindicoRepository.save(sindico);
     }
 

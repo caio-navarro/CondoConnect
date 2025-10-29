@@ -10,5 +10,10 @@ import lombok.*;
 public class Nome {
     private String nome;
 
-
+    public static boolean validar(String nome) {
+        if(nome == null || nome.isEmpty() || nome.length() < 4) {
+            return false;
+        }
+        return true;
+    }
 }

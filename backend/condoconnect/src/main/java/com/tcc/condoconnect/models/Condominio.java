@@ -18,12 +18,14 @@ public class Condominio {
     private Long id;
     private Long codigo;
     private String nome;
+    private String email;
+    private String senha;
+    private String telefone;
     private String cnpj;
 
     private Role role = Role.CONDOMINIO;
 
-    @OneToOne
-    @JoinColumn(name = "id_endereco_condominio")
+    @Embedded
     private EnderecoCondominio endereco;
     private StatusCondominio status = StatusCondominio.ATIVO;
 }

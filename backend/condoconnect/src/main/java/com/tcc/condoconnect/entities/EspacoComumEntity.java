@@ -15,7 +15,6 @@ public class EspacoComumEntity {
     private String descricao;
     private Condominio condominio;
 
-
     public static EspacoComumEntity toEspacoComum(EspacoComum espacoComum) {
         EspacoComumEntity espacoComumEntity = new EspacoComumEntity();
 
@@ -23,6 +22,7 @@ public class EspacoComumEntity {
 
         Nome nome = new Nome();
         nome.setNome(espacoComum.getNome());
+        espacoComumEntity.setNome(nome);
 
         espacoComumEntity.setDescricao(espacoComum.getDescricao());
 

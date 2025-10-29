@@ -7,13 +7,9 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "endereco_condominio")
+@Embeddable
 public class EnderecoCondominio {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String logradouro;
     private String numero;
     private String bairro;

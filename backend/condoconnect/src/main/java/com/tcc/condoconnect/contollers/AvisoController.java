@@ -1,9 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.AvisoApplication;
-import com.tcc.condoconnect.applications.UsuarioApplication;
 import com.tcc.condoconnect.models.Aviso;
-import com.tcc.condoconnect.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
