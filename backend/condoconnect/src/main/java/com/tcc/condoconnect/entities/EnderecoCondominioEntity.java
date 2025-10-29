@@ -8,7 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnderecoCondominioEntity {
-    private Long id;
     private String logradouro;
     private String numero;
     private String bairro;
@@ -18,7 +17,6 @@ public class EnderecoCondominioEntity {
 
     public static EnderecoCondominioEntity toEnderecoCondominio(EnderecoCondominio enderecoCondominio) {
         EnderecoCondominioEntity enderecoCondominioEntity = new EnderecoCondominioEntity();
-        enderecoCondominioEntity.setId(enderecoCondominio.getId());
         enderecoCondominioEntity.setLogradouro(enderecoCondominio.getLogradouro());
         enderecoCondominioEntity.setNumero(enderecoCondominio.getNumero());
         enderecoCondominioEntity.setBairro(enderecoCondominio.getBairro());

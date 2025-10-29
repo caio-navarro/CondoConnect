@@ -30,7 +30,7 @@ public class CondominioController {
         return condominioApplication.atualizar(condominio);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         condominioApplication.deletar(id);
     }

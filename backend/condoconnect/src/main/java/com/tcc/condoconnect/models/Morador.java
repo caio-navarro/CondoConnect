@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.models;
 
 import com.tcc.condoconnect.enums.Role;
+import com.tcc.condoconnect.enums.StatusUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,14 +17,18 @@ public class Morador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cpf;
+    private String nome;
+    private String telefone;
+    private String email;
+    private String senha;
 
     @ManyToOne
     @JoinColumn(name = "id_condominio")
     private Condominio condominio;
 
-    @OneToOne
-    @JoinColumn(name = "id_endereco")
+    @Embedded
     private EnderecoMorador endereco;
 
     private Role role = Role.MORADOR;
+    private StatusUsuario statusUsuario = StatusUsuario.PENDETE;
 }

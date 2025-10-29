@@ -1,6 +1,10 @@
 package com.tcc.condoconnect.entities;
 
+import com.tcc.condoconnect.entities.SubEntities.Cpf;
+import com.tcc.condoconnect.entities.SubEntities.Nome;
+import com.tcc.condoconnect.entities.SubEntities.Telefone;
 import com.tcc.condoconnect.enums.Role;
+import com.tcc.condoconnect.enums.StatusUsuario;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.EnderecoMorador;
 import com.tcc.condoconnect.models.Morador;
@@ -13,55 +17,58 @@ import lombok.*;
 public class MoradorEntity {
 
     private Long id;
-    private String cpf;
+    private Cpf cpf = new Cpf();
+    private Nome nome = new Nome();
+    private String email;
+    private Telefone telefone = new Telefone();
+    private String senha;
     private Condominio condominio;
     private EnderecoMorador endereco;
     private Role role = Role.MORADOR;
-
-    public void validar(){
-        validarCpf(this.cpf);
-    }
+    private StatusUsuario statusUsuario = StatusUsuario.PENDETE;
 
     public static MoradorEntity toMorador(Morador morador) {
         MoradorEntity moradorEntity = new MoradorEntity();
 
         moradorEntity.setId(morador.getId());
-        moradorEntity.setCpf(morador.getCpf());
+
+        Nome nome = new Nome();
+        nome.setNome(morador.getNome());
+        moradorEntity.setNome(nome);
+
+        Cpf cpf = new Cpf();
+        cpf.setCpf(morador.getCpf());
+        moradorEntity.setCpf(cpf);
+
+        Telefone telefone = new Telefone();
+        telefone.setTelefone(morador.getTelefone());
+        moradorEntity.setTelefone(telefone);
+
+        moradorEntity.setEmail(morador.getEmail());
+        moradorEntity.setSenha(morador.getSenha());
         moradorEntity.setCondominio(morador.getCondominio());
         moradorEntity.setEndereco(morador.getEndereco());
         moradorEntity.setRole(morador.getRole());
+        moradorEntity.setStatusUsuario(morador.getStatusUsuario());
 
         return moradorEntity;
     }
 
-    public static String validarCpf(String cpf) {
-        cpf = cpf.replaceAll("[^\\d]", "");
 
-        if (cpf.length() != 11 || cpf.chars().distinct().count() == 1) {
-            return "CPF inválido";
+    public void validar() {
+        boolean erroCpf = Cpf.validarCpf(this.cpf.getCpf());
+        if(!erroCpf) {
+            throw new IllegalArgumentException("CPF inválido");
         }
 
-        int soma = 0;
-        for (int i = 0; i < 9; i++) {
-            soma += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
-        }
-        int primeiroDigito = 11 - (soma % 11);
-        if (primeiroDigito >= 10) primeiroDigito = 0;
-
-
-        soma = 0;
-        for (int i = 0; i < 10; i++) {
-            soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
-        }
-        int segundoDigito = 11 - (soma % 11);
-        if (segundoDigito >= 10) segundoDigito = 0;
-
-
-        if (primeiroDigito != Character.getNumericValue(cpf.charAt(9)) ||
-                segundoDigito != Character.getNumericValue(cpf.charAt(10))) {
-            return "CPF inválido";
+        boolean erroNome = Nome.validar(this.nome.getNome());
+        if(!erroNome) {
+            throw new IllegalArgumentException("Nome invalido");
         }
 
-        return null;
+        boolean erroTelefone = Telefone.validar(this.telefone.getTelefone());
+        if(!erroTelefone) {
+            throw new IllegalArgumentException("Telefone precisa ter ao menos 11 caracteres!");
+        }
     }
 }
