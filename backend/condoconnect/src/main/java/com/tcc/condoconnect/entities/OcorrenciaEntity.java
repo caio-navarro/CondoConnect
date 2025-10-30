@@ -6,7 +6,7 @@ import com.tcc.condoconnect.models.Morador;
 import com.tcc.condoconnect.models.Ocorrencia;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class OcorrenciaEntity {
     private String titulo;
     private String descricao;
     private StatusOcorrencia status = StatusOcorrencia.ABERTO;
-    private Date dataCriacao;
+    private LocalDateTime dataCriacao;
 
     public static OcorrenciaEntity toOcorrencia(Ocorrencia ocorrencia) {
 

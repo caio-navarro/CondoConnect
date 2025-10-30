@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.AvisoApplication;
+import com.tcc.condoconnect.dtos.AvisoRequest;
 import com.tcc.condoconnect.models.Aviso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class AvisoController {
     }
 
     @PostMapping
-    public Aviso cadastrar(@RequestBody Aviso aviso){
+    public Aviso cadastrar(@RequestBody AvisoRequest aviso){
         return avisoApplication.cadastrar(aviso);
     }
 

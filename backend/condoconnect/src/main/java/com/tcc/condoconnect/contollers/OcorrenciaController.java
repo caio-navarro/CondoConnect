@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.OcorrenciaApplication;
+import com.tcc.condoconnect.dtos.OcorrenciaRequest;
 import com.tcc.condoconnect.models.Ocorrencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    public Ocorrencia cadastrar(@RequestBody Ocorrencia ocorrencia){
+    public Ocorrencia cadastrar(@RequestBody OcorrenciaRequest ocorrencia){
         return ocorrenciaApplication.cadastrar(ocorrencia);
     }
 
