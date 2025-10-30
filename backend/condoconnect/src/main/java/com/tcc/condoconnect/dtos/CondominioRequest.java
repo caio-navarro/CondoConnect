@@ -1,6 +1,8 @@
 package com.tcc.condoconnect.dtos;
 
-public record CondominioRequest(Long id, String nome, String cnpj, String senha, String email, String telefone, String codigoCondominio) {
+import com.tcc.condoconnect.models.EnderecoCondominio;
+
+public record CondominioRequest(Long id, String nome, EnderecoCondominio endereco, String cnpj, String senha, String email, String telefone) {
 
     public void validar() {
         if (nome == null || nome.isBlank()) {
@@ -35,13 +37,10 @@ public record CondominioRequest(Long id, String nome, String cnpj, String senha,
         if (telefone == null || telefone.isBlank()) {
             throw new IllegalArgumentException("O telefone é obrigatório.");
         }
+
         String telLimpo = telefone.replaceAll("\\D", "");
         if (!telLimpo.matches("^\\d{11}$")) {
             throw new IllegalArgumentException("O telefone deve conter DDD e 9 dígitos (ex: 75999998888).");
-        }
-
-        if (codigoCondominio == null) {
-            throw new IllegalArgumentException("O código do condomínio é obrigatório.");
         }
     }
 }

@@ -9,5 +9,7 @@ import java.util.Optional;
 @Repository
 public interface SindicoRepository extends JpaRepository<Sindico, Long> {
     Optional<Sindico> findByEmail(String email);
+    boolean existsByCpf(String cpf);
+    boolean existsByEmail(String email);
 
 }

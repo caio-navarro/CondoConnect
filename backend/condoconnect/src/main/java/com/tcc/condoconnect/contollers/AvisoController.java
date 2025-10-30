@@ -2,6 +2,7 @@ package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.AvisoApplication;
 import com.tcc.condoconnect.dtos.AvisoRequest;
+import com.tcc.condoconnect.facade.AvisoFacade;
 import com.tcc.condoconnect.models.Aviso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,25 +14,25 @@ import java.util.List;
 public class AvisoController {
 
     @Autowired
-    private AvisoApplication avisoApplication;
+    private AvisoFacade avisoFacade;
 
     @GetMapping
     public List<Aviso> listar(){
-        return avisoApplication.listar();
+        return avisoFacade.listar();
     }
 
     @PostMapping
     public Aviso cadastrar(@RequestBody AvisoRequest aviso){
-        return avisoApplication.cadastrar(aviso);
+        return avisoFacade.cadastrar(aviso);
     }
 
     @PutMapping
     public Aviso atualizar(@RequestBody Aviso aviso){
-        return avisoApplication.atualizar(aviso);
+        return avisoFacade.atualizar(aviso);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
-        avisoApplication.deletar(id);
+        avisoFacade.deletar(id);
     }
 }
