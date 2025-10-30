@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface MoradorRepository extends JpaRepository<Morador, Long> {
     Optional<Morador> findByEmail(String email);
+    boolean existsByCpf(String cpf);
+    boolean existsByEmail(String email);
 }

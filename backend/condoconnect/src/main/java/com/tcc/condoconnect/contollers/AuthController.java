@@ -1,7 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.AuthApplication;
 import com.tcc.condoconnect.dtos.LoginRequest;
+import com.tcc.condoconnect.facade.AuthFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private AuthApplication authApplication;
+    private AuthFacade authFacade;
 
     @PostMapping("/morador")
     public ResponseEntity<?> loginMorador(@RequestBody LoginRequest loginRequest) {
-        return authApplication.loginMorador(loginRequest);
+        return authFacade.loginMorador(loginRequest);
     }
 
     @PostMapping("/condominio")
     public ResponseEntity<?> loginCondominio(@RequestBody LoginRequest loginRequest) {
-        return authApplication.loginCondominio(loginRequest);
+        return authFacade.loginCondominio(loginRequest);
     }
 
     @PostMapping("/sindico")
     public ResponseEntity<?> loginSindico(@RequestBody LoginRequest loginRequest) {
-        return authApplication.loginSindico(loginRequest);
+        return authFacade.loginSindico(loginRequest);
     }
 }

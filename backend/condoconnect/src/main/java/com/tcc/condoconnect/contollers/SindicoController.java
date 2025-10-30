@@ -1,6 +1,8 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.SindicoApplication;
+import com.tcc.condoconnect.dtos.UsuarioRequest;
+import com.tcc.condoconnect.facade.SindicoFacade;
 import com.tcc.condoconnect.models.Sindico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,25 +14,25 @@ import java.util.List;
 public class SindicoController {
 
     @Autowired
-    private SindicoApplication sindicoApplication;
+    private SindicoFacade sindicoFacade;
 
     @GetMapping
     public List<Sindico> listar(){
-        return sindicoApplication.listar();
+        return sindicoFacade.listar();
     }
 
     @PostMapping
-    public Sindico cadastrar(@RequestBody Sindico sindico){
-        return sindicoApplication.cadastrar(sindico);
+    public Sindico cadastrar(@RequestBody UsuarioRequest sindico){
+        return sindicoFacade.cadastrar(sindico);
     }
 
     @PutMapping
     public Sindico atualizar(@RequestBody Sindico sindico){
-        return sindicoApplication.atualizar(sindico);
+        return sindicoFacade.atualizar(sindico);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
-        sindicoApplication.deletar(id);
+        sindicoFacade.deletar(id);
     }
 }

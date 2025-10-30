@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.EspacoComumApplication;
+import com.tcc.condoconnect.dtos.EspacoComumRequest;
+import com.tcc.condoconnect.facade.EspacoComumFacade;
 import com.tcc.condoconnect.models.EspacoComum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,25 +13,25 @@ import java.util.List;
 public class EspacoComumController {
 
     @Autowired
-    private EspacoComumApplication espacoApplication;
+    private EspacoComumFacade espacoFacade;
 
     @GetMapping
     public List<EspacoComum> listar(){
-        return espacoApplication.listar();
+        return espacoFacade.listar();
     }
 
     @PostMapping
-    public EspacoComum cadastrar(@RequestBody EspacoComum espacoComum){
-        return espacoApplication.cadastrar(espacoComum);
+    public EspacoComum cadastrar(@RequestBody EspacoComumRequest espacoComumRequest){
+        return espacoFacade.cadastrar(espacoComumRequest);
     }
 
     @PutMapping
     public EspacoComum atualizar(@RequestBody EspacoComum espacoComum){
-        return espacoApplication.atualizar(espacoComum);
+        return espacoFacade.atualizar(espacoComum);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
-        espacoApplication.deletar(id);
+        espacoFacade.deletar(id);
     }
 }

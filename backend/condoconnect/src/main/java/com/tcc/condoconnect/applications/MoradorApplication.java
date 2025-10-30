@@ -1,5 +1,6 @@
 package com.tcc.condoconnect.applications;
 
+import com.tcc.condoconnect.applications.validators.UsuarioValidator;
 import com.tcc.condoconnect.dtos.UsuarioRequest;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.Morador;
@@ -19,17 +20,24 @@ public class MoradorApplication {
     @Autowired
     private CondominioRepository condominioRepository;
 
+    @Autowired
+    private UsuarioValidator usuarioValidator;
+
     public List<Morador> listar() {
         return moradorRepository.findAll();
     }
 
     public Morador cadastrar(UsuarioRequest request) {
+        usuarioValidator.validarCpfDuplicado(request.cpf());
+        usuarioValidator.validarEmailDuplicado(request.email());
+
         request.validar();
 
         Condominio condominio = condominioRepository.findByCodigo(request.codigoCondominio())
                 .orElseThrow(() -> new RuntimeException("Código de condominio inválido!"));
 
         Morador morador = new Morador();
+        morador.setId(request.id());
         morador.setCondominio(condominio);
         morador.setNome(request.nome());
         morador.setEmail(request.email());
