@@ -32,6 +32,7 @@ public class SindicoApplication {
                 .orElseThrow(() -> new RuntimeException("Código de condominio inválido!"));
 
         Sindico sindico = new Sindico();
+        sindico.setId(request.id());
         sindico.setCondominio(condominio);
         sindico.setNome(request.nome());
         sindico.setEmail(request.email());

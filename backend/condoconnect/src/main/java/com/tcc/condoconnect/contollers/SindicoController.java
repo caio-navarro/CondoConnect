@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.SindicoApplication;
+import com.tcc.condoconnect.dtos.UsuarioRequest;
 import com.tcc.condoconnect.models.Sindico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class SindicoController {
     }
 
     @PostMapping
-    public Sindico cadastrar(@RequestBody Sindico sindico){
+    public Sindico cadastrar(@RequestBody UsuarioRequest sindico){
         return sindicoApplication.cadastrar(sindico);
     }
 

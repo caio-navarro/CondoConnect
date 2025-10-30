@@ -1,6 +1,8 @@
 package com.tcc.condoconnect.models;
 
+import com.tcc.condoconnect.enums.StatusEspacoComum;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Getter
@@ -16,8 +18,10 @@ public class EspacoComum {
     private Long id;
     private String nome;
     private String descricao;
+    private StatusEspacoComum statusEspaco = StatusEspacoComum.ATIVO;
 
     @ManyToOne
     @JoinColumn(name = "id_condominio")
+    @JsonIgnore // evita recursividade
     private Condominio condominio;
 }

@@ -30,6 +30,7 @@ public class MoradorApplication {
                 .orElseThrow(() -> new RuntimeException("Código de condominio inválido!"));
 
         Morador morador = new Morador();
+        morador.setId(request.id());
         morador.setCondominio(condominio);
         morador.setNome(request.nome());
         morador.setEmail(request.email());

@@ -1,6 +1,6 @@
 package com.tcc.condoconnect.dtos;
 
-public record UsuarioRequest(String nome, String cpf, String senha, String email, String telefone, String codigoCondominio) {
+public record UsuarioRequest(Long id, String nome, String cpf, String senha, String email, String telefone, String codigoCondominio) {
 
     public void validar() {
         if (nome == null || nome.isBlank()) {

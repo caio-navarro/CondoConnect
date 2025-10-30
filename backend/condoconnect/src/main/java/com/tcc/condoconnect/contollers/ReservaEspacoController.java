@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.ReservaEspacoApplication;
+import com.tcc.condoconnect.dtos.ReservaEspacoRequest;
 import com.tcc.condoconnect.models.ReservaEspaco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ReservaEspacoController {
     }
 
     @PostMapping
-    public ReservaEspaco cadastrar(@RequestBody ReservaEspaco reserva){
+    public ReservaEspaco cadastrar(@RequestBody ReservaEspacoRequest reserva){
         return reservaApplication.cadastrar(reserva);
     }
 

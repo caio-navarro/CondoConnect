@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.CondominioApplication;
+import com.tcc.condoconnect.dtos.CondominioRequest;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.Morador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CondominioController {
     }
 
     @PostMapping
-    public Condominio cadastrar(@RequestBody Condominio condominio){
+    public Condominio cadastrar(@RequestBody CondominioRequest condominio){
         return condominioApplication.cadastrar(condominio);
     }
 

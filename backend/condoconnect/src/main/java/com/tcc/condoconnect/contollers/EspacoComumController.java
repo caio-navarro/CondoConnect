@@ -1,6 +1,7 @@
 package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.applications.EspacoComumApplication;
+import com.tcc.condoconnect.dtos.EspacoComumRequest;
 import com.tcc.condoconnect.models.EspacoComum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,8 @@ public class EspacoComumController {
     }
 
     @PostMapping
-    public EspacoComum cadastrar(@RequestBody EspacoComum espacoComum){
-        return espacoApplication.cadastrar(espacoComum);
+    public EspacoComum cadastrar(@RequestBody EspacoComumRequest espacoComumRequest){
+        return espacoApplication.cadastrar(espacoComumRequest);
     }
 
     @PutMapping

@@ -3,7 +3,8 @@ package com.tcc.condoconnect.models;
 import com.tcc.condoconnect.enums.StatusOcorrencia;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,8 +25,9 @@ public class Ocorrencia {
     @ManyToOne
     @JoinColumn(name = "id_condominio")
     private Condominio condominio; // para qual condomínio
+
     private String titulo;
     private String descricao;
     private StatusOcorrencia status = StatusOcorrencia.ABERTO;
-    private Date dataCriacao;
+    private LocalDateTime dataCriacao;
 }

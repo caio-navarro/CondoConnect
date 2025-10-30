@@ -1,6 +1,6 @@
 package com.tcc.condoconnect.applications;
 
-import com.tcc.condoconnect.entities.CondominioEntity;
+import com.tcc.condoconnect.dtos.CondominioRequest;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.repositories.CondominioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,16 @@ public class CondominioApplication {
         return condominioRepository.findAll();
     }
 
-    public Condominio cadastrar(Condominio condominio) {
-        CondominioEntity condominioEntity = CondominioEntity.toCondominio(condominio);
-        condominioEntity.validar();
+    public Condominio cadastrar(CondominioRequest request) {
+        request.validar();
+
+        Condominio condominio = new Condominio();
+        condominio.setId(request.id());
+        condominio.setNome(request.nome());
+        condominio.setEmail(request.email());
+        condominio.setTelefone(request.telefone());
+        condominio.setCnpj(request.cnpj());
+        condominio.setSenha(request.senha());
 
         return condominioRepository.save(condominio);
     }
