@@ -18,9 +18,9 @@ public class CondominioFacade {
         return condominioApplication.listar();
     }
 
-    public Condominio cadastrar(CondominioRequest request) {
+    public Condominio cadastrar(CondominioRequest condominioRequest) {
 
-        return condominioApplication.cadastrar(request);
+        return condominioApplication.cadastrar(condominioRequest);
     }
 
     public void deletar(Long id) {

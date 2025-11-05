@@ -1,6 +1,5 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.ReservaEspacoApplication;
 import com.tcc.condoconnect.dtos.ReservaEspacoRequest;
 import com.tcc.condoconnect.facade.ReservaEspacoFacade;
 import com.tcc.condoconnect.models.ReservaEspaco;
@@ -22,8 +21,8 @@ public class ReservaEspacoController {
     }
 
     @PostMapping
-    public ReservaEspaco cadastrar(@RequestBody ReservaEspacoRequest reserva){
-        return reservaFacade.cadastrar(reserva);
+    public ReservaEspaco cadastrar(@RequestBody ReservaEspacoRequest reservaEspacoRequest){
+        return reservaFacade.cadastrar(reservaEspacoRequest);
     }
 
     @PutMapping

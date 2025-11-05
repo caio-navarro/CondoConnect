@@ -1,10 +1,8 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.CondominioApplication;
 import com.tcc.condoconnect.dtos.CondominioRequest;
 import com.tcc.condoconnect.facade.CondominioFacade;
 import com.tcc.condoconnect.models.Condominio;
-import com.tcc.condoconnect.models.Morador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +21,8 @@ public class CondominioController {
     }
 
     @PostMapping
-    public Condominio cadastrar(@RequestBody CondominioRequest condominio){
-        return condominioFacade.cadastrar(condominio);
+    public Condominio cadastrar(@RequestBody CondominioRequest condominioRequest){
+        return condominioFacade.cadastrar(condominioRequest);
     }
 
     @PutMapping

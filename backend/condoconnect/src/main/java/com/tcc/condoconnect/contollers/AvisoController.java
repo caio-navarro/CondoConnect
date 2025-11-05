@@ -1,6 +1,5 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.AvisoApplication;
 import com.tcc.condoconnect.dtos.AvisoRequest;
 import com.tcc.condoconnect.facade.AvisoFacade;
 import com.tcc.condoconnect.models.Aviso;
@@ -22,8 +21,8 @@ public class AvisoController {
     }
 
     @PostMapping
-    public Aviso cadastrar(@RequestBody AvisoRequest aviso){
-        return avisoFacade.cadastrar(aviso);
+    public Aviso cadastrar(@RequestBody AvisoRequest avisoRequest){
+        return avisoFacade.cadastrar(avisoRequest);
     }
 
     @PutMapping

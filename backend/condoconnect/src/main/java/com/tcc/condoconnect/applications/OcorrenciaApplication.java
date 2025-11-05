@@ -29,6 +29,8 @@ public class OcorrenciaApplication {
     }
 
     public Ocorrencia cadastrar(OcorrenciaRequest ocorrenciaRequest) {
+        ocorrenciaRequest.validar();
+
         Condominio condominio = condominioRepository.findById(ocorrenciaRequest.idCondominio())
                 .orElseThrow(() -> new RuntimeException("Condomínio não encontrado!"));
 

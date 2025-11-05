@@ -27,23 +27,23 @@ public class MoradorApplication {
         return moradorRepository.findAll();
     }
 
-    public Morador cadastrar(UsuarioRequest request) {
-        usuarioValidator.validarCpfDuplicado(request.cpf());
-        usuarioValidator.validarEmailDuplicado(request.email());
+    public Morador cadastrar(UsuarioRequest moradorRequest) {
+        usuarioValidator.validarCpfDuplicado(moradorRequest.cpf());
+        usuarioValidator.validarEmailDuplicado(moradorRequest.email());
 
-        request.validar();
+        moradorRequest.validar();
 
-        Condominio condominio = condominioRepository.findByCodigo(request.codigoCondominio())
+        Condominio condominio = condominioRepository.findByCodigo(moradorRequest.codigoCondominio())
                 .orElseThrow(() -> new RuntimeException("Código de condominio inválido!"));
 
         Morador morador = new Morador();
-        morador.setId(request.id());
+        morador.setId(moradorRequest.id());
         morador.setCondominio(condominio);
-        morador.setNome(request.nome());
-        morador.setEmail(request.email());
-        morador.setTelefone(request.telefone());
-        morador.setCpf(request.cpf());
-        morador.setSenha(request.senha());
+        morador.setNome(moradorRequest.nome());
+        morador.setEmail(moradorRequest.email());
+        morador.setTelefone(moradorRequest.telefone());
+        morador.setCpf(moradorRequest.cpf());
+        morador.setSenha(moradorRequest.senha());
 
         return moradorRepository.save(morador);
     }

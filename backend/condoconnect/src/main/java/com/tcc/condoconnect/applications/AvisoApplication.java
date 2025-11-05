@@ -29,6 +29,7 @@ public class AvisoApplication {
     }
 
     public Aviso cadastrar(AvisoRequest avisoRequest) {
+        avisoRequest.validar();
 
         Condominio condominio = condominioRepository.findById(avisoRequest.idCondominio())
                 .orElseThrow(() -> new RuntimeException("Condomínio não encontrado!"));

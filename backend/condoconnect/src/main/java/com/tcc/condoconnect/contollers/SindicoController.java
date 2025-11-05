@@ -1,6 +1,5 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.SindicoApplication;
 import com.tcc.condoconnect.dtos.UsuarioRequest;
 import com.tcc.condoconnect.facade.SindicoFacade;
 import com.tcc.condoconnect.models.Sindico;
@@ -22,8 +21,8 @@ public class SindicoController {
     }
 
     @PostMapping
-    public Sindico cadastrar(@RequestBody UsuarioRequest sindico){
-        return sindicoFacade.cadastrar(sindico);
+    public Sindico cadastrar(@RequestBody UsuarioRequest sindicoRequest){
+        return sindicoFacade.cadastrar(sindicoRequest);
     }
 
     @PutMapping
