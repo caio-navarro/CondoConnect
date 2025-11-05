@@ -20,8 +20,8 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    public Ocorrencia cadastrar(@RequestBody OcorrenciaRequest ocorrencia){
-        return ocorrenciaFacade.cadastrar(ocorrencia);
+    public Ocorrencia cadastrar(@RequestBody OcorrenciaRequest ocorrenciaRequest){
+        return ocorrenciaFacade.cadastrar(ocorrenciaRequest);
     }
 
     @PutMapping

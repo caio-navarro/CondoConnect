@@ -18,9 +18,9 @@ public class MoradorFacade {
         return moradorApplication.listar();
     }
 
-    public Morador cadastrar(UsuarioRequest request) {
+    public Morador cadastrar(UsuarioRequest moradorRequest) {
 
-        return moradorApplication.cadastrar(request);
+        return moradorApplication.cadastrar(moradorRequest);
     }
 
     public void deletar(Long id) {

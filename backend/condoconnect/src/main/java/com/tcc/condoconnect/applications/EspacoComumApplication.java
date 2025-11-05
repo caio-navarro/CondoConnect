@@ -24,6 +24,8 @@ public class EspacoComumApplication {
     }
 
     public EspacoComum cadastrar(EspacoComumRequest espacoComumRequest) {
+        espacoComumRequest.validar();
+
         Condominio condominio = condominioRepository.findById(espacoComumRequest.idCondominio())
                 .orElseThrow(() -> new RuntimeException("Condominio não encontrado!"));
 

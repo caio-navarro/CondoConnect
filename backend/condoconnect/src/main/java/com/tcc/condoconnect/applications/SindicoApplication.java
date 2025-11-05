@@ -27,23 +27,23 @@ public class SindicoApplication {
         return sindicoRepository.findAll();
     }
 
-    public Sindico cadastrar(UsuarioRequest request) {
-        usuarioValidator.validarCpfDuplicado(request.cpf());
-        usuarioValidator.validarEmailDuplicado(request.email());
+    public Sindico cadastrar(UsuarioRequest sindicoRequest) {
+        usuarioValidator.validarCpfDuplicado(sindicoRequest.cpf());
+        usuarioValidator.validarEmailDuplicado(sindicoRequest.email());
 
-        request.validar();
+        sindicoRequest.validar();
 
-        Condominio condominio = condominioRepository.findByCodigo(request.codigoCondominio())
+        Condominio condominio = condominioRepository.findByCodigo(sindicoRequest.codigoCondominio())
                 .orElseThrow(() -> new RuntimeException("Código de condominio inválido!"));
 
         Sindico sindico = new Sindico();
-        sindico.setId(request.id());
+        sindico.setId(sindicoRequest.id());
         sindico.setCondominio(condominio);
-        sindico.setNome(request.nome());
-        sindico.setEmail(request.email());
-        sindico.setTelefone(request.telefone());
-        sindico.setCpf(request.cpf());
-        sindico.setSenha(request.senha());
+        sindico.setNome(sindicoRequest.nome());
+        sindico.setEmail(sindicoRequest.email());
+        sindico.setTelefone(sindicoRequest.telefone());
+        sindico.setCpf(sindicoRequest.cpf());
+        sindico.setSenha(sindicoRequest.senha());
 
         return sindicoRepository.save(sindico);
     }

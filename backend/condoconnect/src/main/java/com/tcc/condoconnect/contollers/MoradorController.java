@@ -1,6 +1,5 @@
 package com.tcc.condoconnect.contollers;
 
-import com.tcc.condoconnect.applications.MoradorApplication;
 import com.tcc.condoconnect.dtos.UsuarioRequest;
 import com.tcc.condoconnect.facade.MoradorFacade;
 import com.tcc.condoconnect.models.Morador;
@@ -22,8 +21,8 @@ public class MoradorController {
     }
 
     @PostMapping
-    public Morador cadastrar(@RequestBody UsuarioRequest morador){
-        return moradorFacade.cadastrar(morador);
+    public Morador cadastrar(@RequestBody UsuarioRequest moradorRequest){
+        return moradorFacade.cadastrar(moradorRequest);
     }
 
     @PutMapping

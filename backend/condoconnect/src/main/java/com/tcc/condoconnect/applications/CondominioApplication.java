@@ -26,21 +26,21 @@ public class CondominioApplication {
         return condominioRepository.findAll();
     }
 
-    public Condominio cadastrar(CondominioRequest request) {
-        condominioValidator.validarCnpjDuplicado(request.cnpj());
-        condominioValidator.validarEmailDuplicado(request.email());
+    public Condominio cadastrar(CondominioRequest condominioRequest) {
+        condominioValidator.validarCnpjDuplicado(condominioRequest.cnpj());
+        condominioValidator.validarEmailDuplicado(condominioRequest.email());
 
-        request.validar();
+        condominioRequest.validar();
 
         Condominio condominio = new Condominio();
-        condominio.setId(request.id());
-        condominio.setNome(request.nome());
-        condominio.setEndereco(request.endereco());
-        condominio.setEmail(request.email());
+        condominio.setId(condominioRequest.id());
+        condominio.setNome(condominioRequest.nome());
+        condominio.setEndereco(condominioRequest.endereco());
+        condominio.setEmail(condominioRequest.email());
         condominio.setCodigo(codigoGenerator.gerarCodigoCondominio());
-        condominio.setTelefone(request.telefone());
-        condominio.setCnpj(request.cnpj());
-        condominio.setSenha(request.senha());
+        condominio.setTelefone(condominioRequest.telefone());
+        condominio.setCnpj(condominioRequest.cnpj());
+        condominio.setSenha(condominioRequest.senha());
 
         return condominioRepository.save(condominio);
     }

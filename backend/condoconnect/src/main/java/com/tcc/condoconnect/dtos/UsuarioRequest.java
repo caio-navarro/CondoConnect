@@ -3,8 +3,6 @@ package com.tcc.condoconnect.dtos;
 public record UsuarioRequest(Long id, String nome, String cpf, String senha, String email, String telefone, String codigoCondominio) {
 
     public void validar() {
-
-
         if (senha == null || senha.isBlank() ) {
             throw new IllegalArgumentException("A senha precisa ter ao menos 6 digitos!");
         }

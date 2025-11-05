@@ -18,9 +18,9 @@ public class SindicoFacade {
         return sindicoApplication.listar();
     }
 
-    public Sindico cadastrar(UsuarioRequest request) {
+    public Sindico cadastrar(UsuarioRequest usuarioRequest) {
 
-        return sindicoApplication.cadastrar(request);
+        return sindicoApplication.cadastrar(usuarioRequest);
     }
 
     public void deletar(Long id) {
