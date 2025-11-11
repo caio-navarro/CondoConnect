@@ -1,0 +1,227 @@
+/* --- 1. Container Principal e Tipografia --- */
+.reservar-espaco-container {
+  margin-left: 300px; 
+  background-color: #f4f6f8; 
+  min-height: 100vh;
+  padding: 2.5rem;
+  box-sizing: border-box; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #181815;
+}
+
+.reservar-espaco-container h1 {
+  text-align: center;
+  color: #0E406F;
+  margin-bottom: 2.5rem;
+  font-size: 2.2em;
+  font-weight: 700; /* Forte, para o título principal */
+}
+
+/* --- 2. Layout de Colunas --- */
+.layout-reservas {
+  display: flex;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.coluna-esquerda {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.coluna-direita {
+  flex: 1.5;
+}
+
+/* --- 3. Cards (Com micro-interação de "elevar") --- */
+.card-reservas {
+  width: 100%;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-reservas:hover {
+  transform: translateY(-5px); /* Efeito de "elevar" mais suave */
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-reservas h2 {
+  color: #181815;
+  font-size: 1.8em;
+  font-weight: 600; /* Um pouco mais leve que o h1 */
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #406072;
+  text-align: center;
+}
+
+/* --- 4. Lista de Reservas e Espaços --- */
+.lista-itens-reserva {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lista-itens-reserva li {
+  background-color: #F8F8F8;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid #0E406F;
+  border-radius: 6px;
+  font-size: 1.1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.lista-itens-reserva li:hover {
+  background-color: #eaf2f5;
+}
+
+.lista-itens-reserva p {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Botão Reservar (com hover mais sutil) */
+.btn-reservar {
+  background-color: #0E406F;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: background-color 0.2s; /* Remove o 'transform: scale' */
+}
+
+.btn-reservar:hover {
+  background-color: #406072; /* Apenas a troca de cor */
+}
+
+/* Status das reservas */
+.status-tag {
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+}
+
+.status-aprovado { background-color: #2F855A; }
+.status-pendente { background-color: #D69E2E; }
+.status-recusado { background-color: #E53E3E; }
+
+/* --- 5. Responsividade (COM CORREÇÃO CRÍTICA) --- */
+@media (max-width: 1024px) {
+  .layout-reservas {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .reservar-espaco-container {
+    margin-left: 0; 
+    padding: 1.5rem;
+  }
+
+  .card-reservas {
+    padding: 1.5rem;
+  }
+
+  /* --- FIX DE RESPONSIVIDADE --- */
+  /* Força os itens da lista a empilhar no mobile */
+  .lista-itens-reserva li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  /* O botão agora ocupa 100% (o que faz sentido no layout empilhado) */
+  .btn-reservar {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem; /* Um pouco mais de área de toque */
+  }
+  /* --- FIM DO FIX --- */
+}
+
+/* --- 6. (O "PLUS" DA UI) Tematização do Calendário --- */
+.card-datepicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.react-datepicker-inline {
+  width: 100%;
+}
+
+/* Cabeçalho do calendário */
+.react-datepicker__header {
+  background-color: #0E406F !important; /* Cor Primária */
+  border-bottom: none !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+}
+
+/* Nomes dos dias (Su, Mo, Tu) */
+.react-datepicker__day-name {
+  color: #FFFFFF !important;
+  font-weight: 300 !important;
+  opacity: 0.8;
+}
+
+/* Mês (November 2025) */
+.react-datepicker__current-month {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  font-size: 1.1em !important;
+}
+
+/* Setas de navegação */
+.react-datepicker__navigation-icon::before {
+  border-color: #FFFFFF !important;
+  opacity: 0.8;
+}
+
+/* Dia selecionado */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #0E406F !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+/* Dia no hover */
+.react-datepicker__day:hover {
+  background-color: #406072 !important; /* Cor Secundária */
+  color: #FFFFFF !important;
+}
+
+/* --- 7. Ajustes do SweetAlert2 --- */
+.swal2-popup {
+  border-radius: 10px !important;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.swal2-confirm {
+  border-radius: 6px !important;
+}
+
+.swal2-cancel {
+  border-radius: 6px !important;
+}

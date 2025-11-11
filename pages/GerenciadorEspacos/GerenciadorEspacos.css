@@ -1,0 +1,226 @@
+/* --- 1. Container Principal (Ajustado para Sidebar) --- */
+.gerenciar-espacos-container {
+  margin-left: 300px; 
+  background-color: #f4f6f8; 
+  min-height: 100vh;
+  padding: 2.5rem;
+  box-sizing: border-box; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #181515;
+  
+  /* (O "PLUS") Centraliza os cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.gerenciar-espacos-container h1 {
+  text-align: center;
+  color: #0E406F;
+  margin-bottom: 0; /* Menos margem, pois os cards têm gap */
+  font-size: 2.2em;
+}
+
+/* --- 2. (O "PLUS") Card do Formulário de Cadastro --- */
+.card-form-espaco {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card-form-espaco h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8em;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #406072;
+}
+
+/* (Ajuste fino no form que já existia) */
+.form-espaco {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.form-grupo label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.form-grupo input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  font-size: 1em;
+  border: 1px solid #406072;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.form-espaco button {
+  padding: 1rem;
+  background-color: #0E406F;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.form-espaco button:hover {
+  background-color: #406072;
+}
+
+
+/* --- 3. (O "PLUS") Card da Lista de Espaços --- */
+.card-lista-espacos {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card-lista-espacos h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8em;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #406072;
+}
+
+.lista-itens-espacos {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.lista-itens-espacos li {
+  background-color: #F8F8F8;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid #0E406F;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lista-itens-espacos p {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* --- 4. (O "PLUS") Estilos dos Ícones de Ação --- */
+.grupo-acoes-icones {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-icone {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem; /* Tamanho do ícone */
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Ícone de Editar (Azul) */
+.btn-editar {
+  color: #0E406F;
+}
+.btn-editar:hover {
+  background-color: #eaf2f5; /* Fundo azul claro */
+}
+
+/* Ícone de Excluir (Vermelho) */
+.btn-excluir {
+  color: #E53E3E;
+}
+.btn-excluir:hover {
+  background-color: #fff0f0; /* Fundo vermelho claro */
+}
+
+
+/* --- 5. (O "PLUS") Estilos para o Formulário DENTRO do Modal --- */
+
+.form-grupo-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem; 
+}
+.form-grupo-modal label {
+  font-weight: 600;
+  font-size: 1em;
+}
+.form-grupo-modal input {
+  background-color: #FFFFFF;
+  color: #181815;
+  border: 1px solid #406072;
+  border-radius: 6px;
+  padding: 0.9rem 1.2rem;
+  font-size: 1em;
+  outline: none;
+}
+
+.modal-botoes-footer {
+  display: flex;
+  justify-content: flex-end; /* Alinha botões à direita */
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primario {
+  background-color: #0E406F;
+  color: white;
+}
+.btn-primario:hover {
+  background-color: #0a3161;
+}
+.btn-secundario {
+  background-color: #EAEAEA;
+  color: #333;
+}
+.btn-secundario:hover {
+  background-color: #ddd;
+}
+
+
+/* --- 6. Responsividade --- */
+@media (max-width: 768px) {
+  .gerenciar-espacos-container {
+    margin-left: 0; 
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .card-form-espaco, .card-lista-espacos {
+    padding: 1.5rem;
+  }
+}

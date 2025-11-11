@@ -1,0 +1,77 @@
+/* O fundo escuro semi-transparente */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65); /* Um pouco mais escuro para focar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Garante que fique acima de tudo */
+  animation: fade-in 0.2s ease-out;
+}
+
+/* O card branco do modal */
+.modal-content {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Cabeçalho */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.4em;
+  color: #181815;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close-btn:hover {
+  color: #181815;
+}
+
+/* Corpo (onde o conteúdo personalizado entra) */
+.modal-body {
+  padding: 1.5rem;
+  font-size: 1.1em;
+  color: #333;
+}
+
+/* Animações */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
