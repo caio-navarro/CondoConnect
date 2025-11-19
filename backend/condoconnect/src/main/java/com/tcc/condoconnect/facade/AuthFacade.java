@@ -12,15 +12,7 @@ public class AuthFacade {
     @Autowired
     private AuthApplication authApplication;
 
-    public ResponseEntity<?> loginMorador(LoginRequest loginRequest){
-        return authApplication.loginMorador(loginRequest);
-    }
-
-    public ResponseEntity<?> loginCondominio(LoginRequest loginRequest) {
-        return authApplication.loginCondominio(loginRequest);
-    }
-
-    public ResponseEntity<?> loginSindico(LoginRequest loginRequest){
-        return authApplication.loginSindico(loginRequest);
+    public ResponseEntity<?> login(LoginRequest loginRequest) {
+        return authApplication.login(loginRequest);
     }
 }

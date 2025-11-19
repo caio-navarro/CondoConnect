@@ -10,28 +10,29 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/morador")
+@CrossOrigin(origins = "*")
 public class MoradorController {
 
     @Autowired
     private MoradorFacade moradorFacade;
 
     @GetMapping
-    public List<Morador> listar(){
+    public List<Morador> listar() {
         return moradorFacade.listar();
     }
 
     @PostMapping
-    public Morador cadastrar(@RequestBody UsuarioRequest moradorRequest){
+    public Morador cadastrar(@RequestBody UsuarioRequest moradorRequest) {
         return moradorFacade.cadastrar(moradorRequest);
     }
 
     @PutMapping
-    public Morador atualizar(@RequestBody Morador morador){
+    public Morador atualizar(@RequestBody Morador morador) {
         return moradorFacade.atualizar(morador);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public void deletar(@PathVariable Long id) {
         moradorFacade.deletar(id);
     }
 }
