@@ -10,28 +10,29 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sindico")
+@CrossOrigin(origins = "*")
 public class SindicoController {
 
     @Autowired
     private SindicoFacade sindicoFacade;
 
     @GetMapping
-    public List<Sindico> listar(){
+    public List<Sindico> listar() {
         return sindicoFacade.listar();
     }
 
     @PostMapping
-    public Sindico cadastrar(@RequestBody UsuarioRequest sindicoRequest){
+    public Sindico cadastrar(@RequestBody UsuarioRequest sindicoRequest) {
         return sindicoFacade.cadastrar(sindicoRequest);
     }
 
     @PutMapping
-    public Sindico atualizar(@RequestBody Sindico sindico){
+    public Sindico atualizar(@RequestBody Sindico sindico) {
         return sindicoFacade.atualizar(sindico);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public void deletar(@PathVariable Long id) {
         sindicoFacade.deletar(id);
     }
 }

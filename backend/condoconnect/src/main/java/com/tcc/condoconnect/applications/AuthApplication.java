@@ -8,6 +8,7 @@ import com.tcc.condoconnect.models.Sindico;
 import com.tcc.condoconnect.repositories.CondominioRepository;
 import com.tcc.condoconnect.repositories.MoradorRepository;
 import com.tcc.condoconnect.repositories.SindicoRepository;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -24,57 +25,32 @@ public class AuthApplication {
     @Autowired
     private SindicoRepository sindicoRepository;
 
-    public ResponseEntity<?> loginMorador(LoginRequest loginRequest) {
-        Morador morador = moradorRepository.findByEmail(loginRequest.email())
-                .orElseThrow(() -> new IllegalArgumentException("Email ou senha incorretos!"));
+    public ResponseEntity<?> login(LoginRequest loginRequest) {
+        String email = loginRequest.email();
+        String senha = loginRequest.senha();
 
-        if (!morador.getSenha().equals(loginRequest.senha())) {
-            throw new IllegalArgumentException("Email ou senha incorretos!");
+        // Morador
+        var morador = moradorRepository.findByEmailAndSenha(email, senha);
+        if (morador.isPresent()) {
+            var m = morador.get();
+            return ResponseEntity.ok(new LoginResponse(m.getId(), m.getNome(), "MORADOR"));
         }
 
-        LoginResponse response = new LoginResponse(
-                morador.getId(),
-                morador.getNome(),
-                morador.getEmail()
-        );
-
-        return ResponseEntity.ok(response);
-    }
-
-    public ResponseEntity<?> loginCondominio(LoginRequest loginRequest) {
-        Condominio condominio = condominioRepository.findByEmail(loginRequest.email())
-                .orElseThrow(() -> new IllegalArgumentException("Email ou senha incorretos!"));
-
-        if (!condominio.getSenha().equals(loginRequest.senha())) {
-            throw new IllegalArgumentException("Email ou senha incorretos!");
+        // Síndico
+        var sindico = sindicoRepository.findByEmailAndSenha(email, senha);
+        if (sindico.isPresent()) {
+            var s = sindico.get();
+            return ResponseEntity.ok(new LoginResponse(s.getId(), s.getNome(), "SINDICO"));
         }
 
-        LoginResponse response = new LoginResponse(
-                condominio.getId(),
-                condominio.getNome(),
-                condominio.getEmail()
-        );
-
-        return ResponseEntity.ok(response);
-    }
-
-    public ResponseEntity<?> loginSindico(LoginRequest loginRequest) {
-        Sindico sindico = sindicoRepository.findByEmail(loginRequest.email())
-                .orElseThrow(() -> new IllegalArgumentException("Email ou senha incorretos!"));
-
-        if (!sindico.getSenha().equals(loginRequest.senha())) {
-            throw new IllegalArgumentException("Email ou senha incorretos!");
+        // Condomínio
+        var condominio = condominioRepository.findByEmailAndSenha(email, senha);
+        if (condominio.isPresent()) {
+            var c = condominio.get();
+            return ResponseEntity.ok(new LoginResponse(c.getId(), c.getNome(), "CONDOMINIO"));
         }
 
-        LoginResponse response = new LoginResponse(
-                sindico.getId(),
-                sindico.getNome(),
-                sindico.getEmail()
-        );
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(401).body(Map.of("erro", "Email ou senha inválidos"));
     }
-
-
 
 }

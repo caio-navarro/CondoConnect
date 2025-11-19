@@ -10,28 +10,29 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/condominio")
+@CrossOrigin(origins = "*")
 public class CondominioController {
 
     @Autowired
     private CondominioFacade condominioFacade;
 
     @GetMapping
-    public List<Condominio> listar(){
+    public List<Condominio> listar() {
         return condominioFacade.listar();
     }
 
     @PostMapping
-    public Condominio cadastrar(@RequestBody CondominioRequest condominioRequest){
+    public Condominio cadastrar(@RequestBody CondominioRequest condominioRequest) {
         return condominioFacade.cadastrar(condominioRequest);
     }
 
     @PutMapping
-    public Condominio atualizar(@RequestBody Condominio condominio){
+    public Condominio atualizar(@RequestBody Condominio condominio) {
         return condominioFacade.atualizar(condominio);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public void deletar(@PathVariable Long id) {
         condominioFacade.deletar(id);
     }
 }
