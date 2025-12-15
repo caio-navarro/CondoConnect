@@ -2,7 +2,8 @@ package com.tcc.condoconnect.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tcc.condoconnect.enums.Role;
-import com.tcc.condoconnect.enums.StatusCondominio;
+import com.tcc.condoconnect.enums.StatusUsuario;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +32,7 @@ public class Condominio {
 
     @Embedded
     private EnderecoCondominio endereco;
-    private StatusCondominio status = StatusCondominio.ATIVO;
+    private StatusUsuario statusUsuario = StatusUsuario.PENDENTE;
 
     @OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<EspacoComum> espacosComuns = new ArrayList<>();

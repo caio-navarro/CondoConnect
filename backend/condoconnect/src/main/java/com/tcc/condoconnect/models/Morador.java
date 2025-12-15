@@ -30,5 +30,5 @@ public class Morador {
     private EnderecoMorador endereco;
 
     private Role role = Role.MORADOR;
-    private StatusUsuario statusUsuario = StatusUsuario.PENDETE;
+    private StatusUsuario statusUsuario = StatusUsuario.PENDENTE;
 }

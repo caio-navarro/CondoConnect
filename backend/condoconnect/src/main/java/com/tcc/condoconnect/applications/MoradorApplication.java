@@ -2,6 +2,7 @@ package com.tcc.condoconnect.applications;
 
 import com.tcc.condoconnect.applications.validators.UsuarioValidator;
 import com.tcc.condoconnect.dtos.UsuarioRequest;
+import com.tcc.condoconnect.enums.StatusUsuario;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.Morador;
 import com.tcc.condoconnect.repositories.CondominioRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MoradorApplication {
@@ -45,6 +47,30 @@ public class MoradorApplication {
         morador.setCpf(moradorRequest.cpf());
         morador.setSenha(moradorRequest.senha());
 
+        return moradorRepository.save(morador);
+    }
+
+    public List<Morador> moradoresPendentes() {
+        return moradorRepository.findAllByStatusUsuario(StatusUsuario.PENDENTE);
+    }
+
+    public Morador aprovarMorador(Long id) {
+        Optional<Morador> moradorOpt = moradorRepository.findById(id);
+        if (moradorOpt.isEmpty()) {
+            throw new RuntimeException("Morador não encontrado");
+        }
+        Morador morador = moradorOpt.get();
+        morador.setStatusUsuario(StatusUsuario.ACEITO);
+        return moradorRepository.save(morador);
+    }
+
+    public Morador recusarMorador(Long id) {
+        Optional<Morador> moradorOpt = moradorRepository.findById(id);
+        if (moradorOpt.isEmpty()) {
+            throw new RuntimeException("Morador não encontrado");
+        }
+        Morador morador = moradorOpt.get();
+        morador.setStatusUsuario(StatusUsuario.INATIVO);
         return moradorRepository.save(morador);
     }
 

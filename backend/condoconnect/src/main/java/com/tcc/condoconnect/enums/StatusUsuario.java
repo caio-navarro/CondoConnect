@@ -1,7 +1,7 @@
 package com.tcc.condoconnect.enums;
 
 public enum StatusUsuario {
-    PENDETE,
+    PENDENTE,
     ACEITO,
     INATIVO
 }

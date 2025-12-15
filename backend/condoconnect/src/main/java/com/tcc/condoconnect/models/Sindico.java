@@ -23,7 +23,7 @@ public class Sindico {
     private String senha;
 
     private Role role = Role.SINDICO;
-    private StatusUsuario statusUsuario = StatusUsuario.PENDETE;
+    private StatusUsuario statusUsuario = StatusUsuario.PENDENTE;
 
     @OneToOne
     @JoinColumn(name = "id_condominio")

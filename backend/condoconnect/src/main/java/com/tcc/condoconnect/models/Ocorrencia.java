@@ -26,6 +26,8 @@ public class Ocorrencia {
     @JoinColumn(name = "id_condominio")
     private Condominio condominio; // para qual condomínio
 
+    private String categoria;
+
     private String titulo;
     private String descricao;
     private StatusOcorrencia status = StatusOcorrencia.ABERTO;
