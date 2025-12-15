@@ -2,6 +2,7 @@ package com.tcc.condoconnect.applications;
 
 import com.tcc.condoconnect.applications.validators.UsuarioValidator;
 import com.tcc.condoconnect.dtos.UsuarioRequest;
+import com.tcc.condoconnect.enums.StatusUsuario;
 import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.Sindico;
 import com.tcc.condoconnect.repositories.CondominioRepository;
@@ -46,6 +47,18 @@ public class SindicoApplication {
         sindico.setSenha(sindicoRequest.senha());
 
         return sindicoRepository.save(sindico);
+    }
+
+    public Sindico atualizarStatus(Long id, StatusUsuario status) {
+        Sindico sindico = sindicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Síndico não encontrado."));
+
+        sindico.setStatusUsuario(status);
+        return sindicoRepository.save(sindico);
+    }
+
+    public List<Sindico> sindicosPendentes() {
+        return sindicoRepository.findAllByStatusUsuario(StatusUsuario.PENDENTE);
     }
 
     public void deletar(Long id) {

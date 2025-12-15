@@ -1,5 +1,8 @@
 package com.tcc.condoconnect.dtos;
 
-public record LoginResponse(Long id, String nome, String role) {
+import com.tcc.condoconnect.enums.Role;
+import com.tcc.condoconnect.enums.StatusUsuario;
+
+public record LoginResponse(Long id, String nome, Role role, StatusUsuario statusUsuario) {
 
 }

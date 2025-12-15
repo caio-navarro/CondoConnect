@@ -31,6 +31,21 @@ public class MoradorController {
         return moradorFacade.atualizar(morador);
     }
 
+    @GetMapping("/moradores-pendentes")
+    public List<Morador> moradoresPendentes() {
+        return moradorFacade.moradoresPendentes();
+    }
+
+    @PutMapping("/{id}/aprovar")
+    public Morador aprovarMorador(@PathVariable Long id) {
+        return moradorFacade.aprovarMorador(id);
+    }
+
+    @PutMapping("/{id}/recusar")
+    public Morador recusarMorador(@PathVariable Long id) {
+        return moradorFacade.recusarMorador(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         moradorFacade.deletar(id);
