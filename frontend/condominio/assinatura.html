@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Condo Connect - Assinatura</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24 !important;
+            font-size: 24px !important;
+            line-height: 1 !important;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: { "display": ["Manrope", "sans-serif"] }
+                },
+            },
+        }
+
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+    </script>
+</head>
+
+<body class="font-display">
+    <div class="relative flex min-h-screen w-full bg-background-light dark:bg-background-dark overflow-x-hidden">
+
+        <!-- SIDEBAR MOBILE -->
+        <aside id="sidebar"
+            class="fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-slate-900 p-4 flex flex-col justify-between border-r border-slate-200 dark:border-slate-800 lg:hidden transform -translate-x-full transition-transform duration-300 ease-in-out">
+
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-cover rounded-full size-10"
+                            style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCia8iPo1TVVAoQfYubn2l_-AafIBVrorazeVdzT63h0_rVyEd_-GkUSciYQly3b6gSzgonpAFduwC7iL0o3jHrSzwlhT2YZxJMkDTmSNSmPEYWq5j3Qf_B_ZsIaLvZVUvN7XqkH1cISAnXEyA-S0maSHcCIdTOzhEQWGhk3-W2ONhjxCH6p4fdpfzgELVXmcIlROAXQoyzDCTjUMQCRzH2akMz7d14DK_uJ");'>
+                        </div>
+                        <div class="flex flex-col">
+                            <h1 class="text-base font-medium text-slate-900 dark:text-slate-200">Admin</h1>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Condo Connect</p>
+                        </div>
+                    </div>
+                    <button class="p-2" onclick="toggleMobileMenu()">
+                        <span class="material-symbols-outlined text-slate-500">close</span>
+                    </button>
+                </div>
+
+                <!-- NAV MOBILE -->
+                <nav class="flex flex-col gap-2 mt-4">
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-200"
+                        href="dashboard.html">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <p class="text-sm font-medium">Dashboard</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded-lg"
+                        href="gestaoMoradores.html">
+                        <span class="material-symbols-outlined">group</span>
+                        <p class="text-sm font-medium">Moradores</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded-lg"
+                        href="aprovarSindicos.html">
+                        <span class="material-symbols-outlined">shield_person</span>
+                        <p class="text-sm font-medium">Síndicos</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded-lg" href="#">
+                        <span class="material-symbols-outlined">report</span>
+                        <p class="text-sm font-medium">Ocorrências</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded-lg" href="#">
+                        <span class="material-symbols-outlined">campaign</span>
+                        <p class="text-sm font-medium">Avisos</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded-lg"
+                        href="geradorCodigo.html">
+                        <span class="material-symbols-outlined">key</span>
+                        <p class="text-sm font-medium">Códigos</p>
+                    </a>
+
+                    <!-- ACTIVE -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:bg-primary/20"
+                        href="assinatura.html">
+                        <span class="material-symbols-outlined text-primary"
+                            style="font-variation-settings:'FILL' 1;">credit_card</span>
+                        <p class="text-sm font-medium">Assinatura</p>
+                    </a>
+
+                </nav>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-200" href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p class="text-sm font-medium">Sair</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- OVERLAY -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden" onclick="toggleMobileMenu()">
+        </div>
+
+        <!-- DESKTOP SIDEBAR -->
+        <aside
+            class="w-64 bg-white dark:bg-background-dark border-r border-slate-200 dark:border-slate-800 p-4 hidden lg:flex flex-col justify-between">
+
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-center bg-cover rounded-full size-10"
+                        style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCia8iPo1TVVAoQfYubn2l_-AafIBVrorazeVdzT63h0_rVyEd_-GkUSciYQly3b6gSzgonpAFduwC7iL0o3jHrSzwlhT2YZxJMkDTmSNSmPEYWq5j3Qf_B_ZsIaLvZVUvN7XqkH1cISAnXEyA-S0maSHcCIdTOzhEQWGhk3-W2ONhjxCH6p4fdpfzgELVXmcIlROAXQoyzDCTjUMQCRzH2akMz7d14DK_uJ");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-base font-medium text-slate-900 dark:text-slate-200">Admin</h1>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Condo Connect</p>
+                    </div>
+                </div>
+
+                <nav class="flex flex-col gap-2 mt-4">
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100"
+                        href="dashboard.html">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <p class="text-sm font-medium">Dashboard</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-100 rounded-lg"
+                        href="gestaoMoradores.html">
+                        <span class="material-symbols-outlined">group</span>
+                        <p class="text-sm font-medium">Moradores</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-100 rounded-lg"
+                        href="aprovarSindicos.html">
+                        <span class="material-symbols-outlined">shield_person</span>
+                        <p class="text-sm font-medium">Síndicos</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-100 rounded-lg" href="#">
+                        <span class="material-symbols-outlined">report</span>
+                        <p class="text-sm font-medium">Ocorrências</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-100 rounded-lg" href="#">
+                        <span class="material-symbols-outlined">campaign</span>
+                        <p class="text-sm font-medium">Avisos</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-100 rounded-lg"
+                        href="geradorCodigo.html">
+                        <span class="material-symbols-outlined">key</span>
+                        <p class="text-sm font-medium">Códigos</p>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:bg-primary/20"
+                        href="assinatura.html">
+                        <span class="material-symbols-outlined text-primary"
+                            style="font-variation-settings:'FILL' 1;">credit_card</span>
+                        <p class="text-sm font-medium">Assinatura</p>
+                    </a>
+
+                </nav>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100" href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p class="text-sm font-medium">Sair</p>
+                </a>
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 flex flex-col">
+            <header
+                class="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-3 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
+
+                <div class="flex items-center gap-4">
+                    <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-slate-200">
+                        Assinatura
+                    </h2>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button
+                        class="h-10 w-10 rounded-full bg-slate-100 dark:bg-slate-800 flex justify-center items-center">
+                        <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">notifications</span>
+                    </button>
+
+                    <div class="bg-center bg-cover rounded-full size-10"
+                        style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4ihsPcCSjHKTC4r9Kap1JzAjWy2nLK6A0banHS-7WYDIZd8juTCLwP33n7SoTkCyOM7eUm7vKej3sRERI0zYapPVlKo4yLIzFWe0q1ykqwofxyPXRoKy8fR6PrLyEmNCQbeiAdWWfDEbSv9pAJSXfHked6f5VRFtBTwk8gfqDiEl-tOXk5_B0nnqRGrDSd7C7gxK");'>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTENT -->
+            <div class="flex-1 p-4 sm:p-6 lg:p-10">
+
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-slate-200 mb-6">Informações da Assinatura</h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+                        <div class="flex flex-col gap-1">
+                            <p class="text-sm text-slate-500">Valor</p>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-slate-200">R$ 200,00</p>
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                            <p class="text-sm text-slate-500">Data de Vencimento</p>
+                            <p id="dataVencimento" class="text-lg font-semibold text-slate-900 dark:text-slate-200">
+                                --/--/----</p>
+                        </div>
+
+                        <!-- ✔ STATUS + BOTÃO RENOVAR -->
+                        <div class="flex flex-col gap-1">
+                            <p class="text-sm text-slate-500">Status</p>
+
+                            <div class="flex items-center gap-3">
+                                <span id="statusAssinatura"
+                                    class="px-3 py-1 rounded-full text-sm font-semibold w-fit bg-green-100 text-green-700">
+                                    Ativo
+                                </span>
+
+                                <button id="btnRenovar"
+                                    class="px-3 py-1 text-sm font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition">
+                                    Renovar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // EXEMPLO DE DADOS QUE VOCÊ VAI TROCAR VIA API
+        const assinatura = {
+            ativo: true,
+            vencimento: "2025-12-10"
+        };
+
+        // SETA VENCIMENTO
+        document.getElementById("dataVencimento").innerText =
+            new Date(assinatura.vencimento).toLocaleDateString("pt-BR");
+
+        // SETA STATUS
+        const statusEl = document.getElementById("statusAssinatura");
+
+        if (!assinatura.ativo) {
+            statusEl.innerText = "Inativo";
+            statusEl.classList.remove("bg-green-100", "text-green-700");
+            statusEl.classList.add("bg-red-100", "text-red-700");
+        }
+    </script>
+
+</body>
+
+</html>

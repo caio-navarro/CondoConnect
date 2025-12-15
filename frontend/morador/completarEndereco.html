@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Condo Connect - Complete seu Endereço</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            "gray": {
+              50: "#f9fafb",
+              100: "#f3f4f6",
+              200: "#e5e7eb",
+              300: "#d1d5db",
+              400: "#9ca3af",
+              500: "#6b7280",
+              600: "#4b5563",
+              700: "#374151",
+              800: "#1f2937",
+              900: "#111827"
+            },
+            "blue": {
+              600: "#2563eb"
+            },
+            "green": {
+              100: "#dcfce7",
+              700: "#15803d"
+            },
+            "red": {
+              100: "#fee2e2",
+              700: "#b91c1c"
+            }
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+  <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <header class="w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-700">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between whitespace-nowrap h-16">
+          <div class="flex items-center gap-4 text-gray-900 dark:text-white">
+            <div class="size-6 text-primary">
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1 w-full py-8 sm:py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+          <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-3">
+                <p class="text-gray-800 dark:text-gray-200 text-base font-medium leading-normal">Passo 2 de 2: Complete
+                  seu Endereço</p>
+                <div class="rounded-full bg-gray-200 dark:bg-gray-700">
+                  <div class="h-2 rounded-full bg-primary" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="flex min-w-72 flex-col gap-2">
+                <h1
+                  class="text-gray-900 dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
+                  Quase lá! Complete seu endereço.</h1>
+                <p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal">Para finalizar seu
+                  cadastro, precisamos que confirme os detalhes do seu endereço no condomínio.</p>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm">
+              <form class="flex flex-col gap-6 p-6 sm:p-8">
+                <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Endereço do Condomínio:</p>
+                  <p class="text-base text-gray-600 dark:text-gray-400">Avenida Paulista, 1578 - Bela Vista, São Paulo -
+                    SP, 01310-200</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <label class="flex flex-col w-full">
+                    <p class="text-gray-800 dark:text-gray-200 text-sm font-medium leading-normal pb-2">Bloco
+                      (Complemento)</p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-primary focus:ring-2 focus:ring-primary/20 h-12 placeholder:text-gray-500 dark:placeholder-gray-400 px-3.5 text-base font-normal leading-normal"
+                      placeholder="Ex: Bloco A" value="" />
+                  </label>
+                  <label class="flex flex-col w-full">
+                    <p class="text-gray-800 dark:text-gray-200 text-sm font-medium leading-normal pb-2">Apartamento</p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-primary focus:ring-2 focus:ring-primary/20 h-12 placeholder:text-gray-500 dark:placeholder-gray-400 px-3.5 text-base font-normal leading-normal"
+                      placeholder="Ex: Apto 101" value="" />
+                  </label>
+                </div>
+                <div class="pt-2">
+                  <button
+                    class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-background-dark">
+                    Salvar Endereço
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </main>
+  </div>
+
+</body>
+
+</html>
