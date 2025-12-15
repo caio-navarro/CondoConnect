@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Condo Connect - Cadastre seu Condomínio</title>
 
-    <!-- Tailwind -->
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-    <!-- Google Fonts -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" crossorigin href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <!-- FORMULÁRIO -->
+                
                 <div class="flex flex-col justify-center p-6 sm:p-10">
 
                     <div class="mb-6 flex items-center gap-3 md:hidden">
@@ -95,39 +95,36 @@
                     <form id="registro-form" class="flex flex-col gap-4" onsubmit="return false">
 
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <!-- Nome -->
+                            
                             <div class="flex flex-col sm:col-span-2">
                                 <label class="pb-2 text-sm font-medium text-slate-800">Nome do Condomínio</label>
                                 <input id="reg-nome" type="text" required placeholder="Digite o nome do condomínio"
                                     class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800" />
                             </div>
 
-                            <!-- CNPJ -->
+                           
                             <div class="flex flex-col">
                                 <label class="pb-2 text-sm font-medium text-slate-800">CNPJ</label>
                                 <input id="reg-cnpj" type="text" maxlength="18" placeholder="00.000.000/0000-00"
-                                    oninput="maskCNPJ(this)"
                                     class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800" />
                             </div>
 
-                            <!-- Telefone -->
+                            
                             <div class="flex flex-col">
                                 <label class="pb-2 text-sm font-medium text-slate-800">Telefone</label>
                                 <input id="reg-tel" type="text" maxlength="15" placeholder="(11) 91234-5678"
                                     class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800" />
                             </div>
 
-                            <!-- Email -->
+                            
                             <div class="flex flex-col">
                                 <label class="pb-2 text-sm font-medium text-slate-800">E-mail do Administrador</label>
                                 <input id="reg-email" type="email" placeholder="voce@exemplo.com"
                                     class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800" />
                             </div>
 
-                            <!-- SENHA + CONFIRMAR SENHA LADO A LADO -->
+                            
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:col-span-2">
-
-                                <!-- Senha -->
                                 <div class="flex flex-col">
                                     <label class="pb-2 text-sm font-medium text-slate-800">Senha</label>
                                     <div class="relative">
@@ -141,7 +138,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Confirmar senha -->
                                 <div class="flex flex-col">
                                     <label class="pb-2 text-sm font-medium text-slate-800">Confirmar Senha</label>
                                     <div class="relative">
@@ -155,17 +151,16 @@
                                         </button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
-                        <!-- ENDEREÇO -->
+                        
                         <div class="border-t border-slate-200 pt-6">
                             <h2 class="text-[#111418] text-lg font-bold">Endereço do Condomínio</h2>
                             <div class="mt-4 grid grid-cols-6 gap-x-4 gap-y-4">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label class="text-sm pb-2 block">CEP</label>
-                                    <input id="reg-cep" maxlength="9" placeholder="00000-000" oninput="maskCEP(this)"
+                                    <input id="reg-cep" maxlength="9" placeholder="00000-000"
                                         class="form-input w-full rounded-lg border border-slate-300 bg-white p-3 h-12" />
                                 </div>
 
@@ -201,7 +196,7 @@
                             </div>
                         </div>
 
-                        <!-- VOLTAR -->
+                        
                         <div class="mb-4">
                             <a href="../pagInicial/selecaoCadastro.html"
                                 class="flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700">
@@ -210,14 +205,13 @@
                             </a>
                         </div>
 
-                        <!-- BOTÃO REGISTRAR -->
+                        
                         <div class="pt-6">
                             <button type="submit"
                                 class="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-white shadow-sm hover:bg-green-700">
                                 Registrar
                             </button>
                         </div>
-
                     </form>
 
                     <p class="mt-6 text-center text-sm text-slate-500">
@@ -229,8 +223,26 @@
         </div>
     </div>
 
+    
+    <div id="erro-modal" class="fixed inset-0 z-50 items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/50" id="erro-modal-backdrop"></div>
+        <div class="relative mx-4 max-w-md rounded-xl bg-white p-6 shadow-2xl">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-3xl text-red-600">error_outline</span>
+                <h3 class="text-xl font-bold text-slate-800">Erro no cadastro</h3>
+            </div>
+            <p class="text-slate-600 mb-4">Corrija os seguintes campos antes de continuar:</p>
+            <ul id="erro-list" class="space-y-2 text-sm text-slate-700 list-disc list-inside max-h-64 overflow-y-auto"></ul>
+            <button id="erro-modal-close"
+                class="mt-6 w-full rounded-lg bg-primary py-3 font-bold text-white hover:bg-green-700">
+                Entendi
+            </button>
+        </div>
+    </div>
+
+    
     <script>
-        /* ---------- Password toggle ---------- */
+        
         function setupPasswordToggle(inputId, toggleId, iconId) {
             const input = document.getElementById(inputId);
             const toggle = document.getElementById(toggleId);
@@ -249,76 +261,7 @@
 
         setupPasswordToggle("reg-senha", "togglePassword", "iconPassword");
         setupPasswordToggle("reg-confirmar-senha", "toggleConfirmPassword", "iconConfirmPassword");
-
-        /* ---------- Masks ---------- */
-        function maskCNPJ(input) {
-            let value = input.value.replace(/\D/g, '').slice(0, 14);
-            if (value.length <= 2) input.value = value;
-            else if (value.length <= 5) input.value = value.replace(/(\d{2})(\d{0,3})/, '$1.$2');
-            else if (value.length <= 8) input.value = value.replace(/(\d{2})(\d{3})(\d{0,3})/, '$1.$2.$3');
-            else if (value.length <= 12) input.value = value.replace(/(\d{2})(\d{3})(\d{3})(\d{0,4})/, '$1.$2.$3/$4');
-            else input.value = value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, '$1.$2.$3/$4-$5');
-        }
-
-        const telInput = document.getElementById("reg-tel");
-        telInput.addEventListener("input", function (e) {
-            let value = e.target.value.replace(/\D/g, "").slice(0, 11);
-            if (value.length <= 2) e.target.value = `(${value}`;
-            else if (value.length <= 6) e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-            else if (value.length <= 10) e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
-            else e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-        });
-
-        function maskCEP(input) {
-            let value = input.value.replace(/\D/g, '').slice(0, 8);
-            if (value.length <= 5) input.value = value;
-            else input.value = value.replace(/(\d{5})(\d{0,3})/, '$1-$2');
-        }
-
-        /* ---------- ViaCEP ---------- */
-        const cepInput = document.getElementById("reg-cep");
-        const ruaInput = document.getElementById("reg-rua");
-        const bairroInput = document.getElementById("reg-bairro");
-        const cidadeInput = document.getElementById("reg-cidade");
-        const estadoInput = document.getElementById("reg-estado");
-
-        async function buscarCEP(cep) {
-            try {
-                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                const data = await response.json();
-
-                if (data.erro) {
-                    alert("CEP não encontrado!");
-                    ruaInput.value = "";
-                    bairroInput.value = "";
-                    cidadeInput.value = "";
-                    estadoInput.value = "";
-                    return;
-                }
-
-                ruaInput.value = data.logradouro;
-                bairroInput.value = data.bairro;
-                cidadeInput.value = data.localidade;
-                estadoInput.value = data.uf;
-
-            } catch (error) {
-                console.error("Erro ao buscar CEP:", error);
-                alert("Erro ao buscar CEP. Tente novamente.");
-            }
-        }
-
-        cepInput.addEventListener("blur", () => {
-            const cep = cepInput.value.replace(/\D/g, '');
-            if (cep.length === 8) buscarCEP(cep);
-            else {
-                ruaInput.value = "";
-                bairroInput.value = "";
-                cidadeInput.value = "";
-                estadoInput.value = "";
-            }
-        });
     </script>
-
     <script src="cadastroCondominio.js"></script>
 </body>
 
