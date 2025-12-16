@@ -10,6 +10,7 @@ import com.tcc.condoconnect.repositories.SindicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -38,14 +39,19 @@ public class AvisoApplication {
                 .orElseThrow(() -> new RuntimeException("Sindico não encontrado!"));
 
         Aviso aviso = new Aviso();
-        aviso.setId(avisoRequest.id());
         aviso.setTitulo(avisoRequest.titulo());
         aviso.setDescricao(avisoRequest.descricao());
-        aviso.setDataCriacao(avisoRequest.dataCriacao());
+        aviso.setUrgente(avisoRequest.urgente());
+        aviso.setDataCriacao(LocalDate.now());
+        aviso.setCategoria(avisoRequest.categoria());
         aviso.setSindico(sindico);
         aviso.setCondominio(condominio);
 
         return avisoRepository.save(aviso);
+    }
+
+    public List<Aviso> listarPorCondominio(Long idCondominio) {
+        return avisoRepository.findByCondominioId(idCondominio);
     }
 
     public void deletar(Long id) {

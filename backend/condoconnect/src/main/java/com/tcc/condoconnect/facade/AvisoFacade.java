@@ -4,6 +4,7 @@ import com.tcc.condoconnect.applications.AvisoApplication;
 import com.tcc.condoconnect.dtos.AvisoRequest;
 import com.tcc.condoconnect.models.Aviso;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,6 +23,11 @@ public class AvisoFacade {
         return avisoApplication.cadastrar(avisoRequest);
     }
 
+    public ResponseEntity<List<Aviso>> listarPorCondominio(Long idCondominio) {
+        List<Aviso> avisos = avisoApplication.listarPorCondominio(idCondominio);
+        return ResponseEntity.ok(avisos);
+    }
+
     public void deletar(Long id) {
         avisoApplication.deletar(id);
     }
@@ -30,4 +36,3 @@ public class AvisoFacade {
         return avisoApplication.atualizar(aviso);
     }
 }
-
