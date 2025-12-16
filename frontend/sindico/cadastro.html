@@ -15,18 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-    <!-- Tailwind Config (vermelho suave) -->
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: "#E56A70", /* vermelho suave */
-                        "background-light": "#f6f7f8",
-                        "slate-100": "#f1f5f9",
-                        "slate-300": "#cbd5e1",
-                        "slate-500": "#64748b",
-                        "slate-800": "#1e293b"
+                        primary: "#E56A70",
+                        "background-light": "#f6f7f8"
                     },
                     fontFamily: {
                         display: ["Manrope", "sans-serif"]
@@ -38,11 +34,7 @@
 
     <style>
         .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
         .fade-scale {
@@ -85,7 +77,7 @@
                     </div>
                 </div>
 
-                <!-- Lado Direito -->
+                <!-- Formulário -->
                 <div class="flex flex-col justify-center p-6 sm:p-10">
                     <div class="mb-6 flex items-center gap-3 md:hidden">
                         <span class="material-symbols-outlined text-3xl text-primary">apartment</span>
@@ -97,99 +89,79 @@
                         Bem-vindo! Preencha os dados abaixo para criar sua conta de síndico.
                     </p>
 
-                    <form id="registro-form" class="flex flex-col gap-4" onsubmit="return false">
+                    <form id="registro-form" class="flex flex-col gap-4">
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-                            <!-- Nome -->
+                            
                             <div class="flex flex-col sm:col-span-2">
-                                <label for="full-name" class="pb-2 text-sm font-medium text-slate-800">
-                                    Nome Completo
-                                </label>
+                                <label class="pb-2 text-sm font-medium text-slate-800">Nome Completo</label>
                                 <input id="reg-nome" type="text" required placeholder="João da Silva"
-                                    class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
+                                    class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
                             </div>
 
-                            <!-- Email -->
+                            
                             <div class="flex flex-col sm:col-span-2">
-                                <label for="email" class="pb-2 text-sm font-medium text-slate-800">
-                                    Endereço de E-mail
-                                </label>
+                                <label class="pb-2 text-sm font-medium text-slate-800">Endereço de E-mail</label>
                                 <input id="reg-email" type="email" required placeholder="voce@exemplo.com"
-                                    class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
+                                    class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
                             </div>
 
-                            <!-- CPF -->
-                            <div class="flex flex-col mb-4">
-                                <label for="cpf" class="pb-2 text-sm font-medium text-slate-800">CPF</label>
-                                <input id="reg-cpf" type="text" required placeholder="000.000.000-00"
-                                    class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
-                            </div>
-
-                            <!-- Telefone -->
-                            <div class="flex flex-col mb-4">
-                                <label for="telefone" class="pb-2 text-sm font-medium text-slate-800">Telefone</label>
-                                <input id="reg-tel" type="text" required placeholder="(11) 91234-5678"
-                                    class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
-                            </div>
-
-                            <!-- Senha -->
+                            
                             <div class="flex flex-col">
-                                <label for="password" class="pb-2 text-sm font-medium text-slate-800">Senha</label>
+                                <label class="pb-2 text-sm font-medium text-slate-800">CPF</label>
+                                <input id="reg-cpf" type="text" required placeholder="000.000.000-00"
+                                    class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
+                            </div>
 
+                            
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-sm font-medium text-slate-800">Telefone</label>
+                                <input id="reg-tel" type="text" required placeholder="(11) 91234-5678"
+                                    class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
+                            </div>
+
+                            
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-sm font-medium text-slate-800">Senha</label>
                                 <div class="relative">
                                     <input id="reg-senha" type="password" required placeholder="6+ caracteres"
-                                        class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 pr-10 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
-
+                                        class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 pr-10 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
                                     <button id="togglePassword" type="button"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700">
-                                        <span id="iconPassword"
-                                            class="material-symbols-outlined text-xl fade-scale active">visibility</span>
+                                        <span id="iconPassword" class="material-symbols-outlined text-xl fade-scale active">visibility</span>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Confirmar Senha -->
+                            
                             <div class="flex flex-col">
-                                <label for="reg-confirmar-senha" class="pb-2 text-sm font-medium text-slate-800">
-                                    Confirmar Senha
-                                </label>
-
+                                <label class="pb-2 text-sm font-medium text-slate-800">Confirmar Senha</label>
                                 <div class="relative">
-                                    <input id="reg-confirmar-senha" type="password" required
-                                        placeholder="Confirme a senha"
-                                        class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 pr-10 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
-
+                                    <input id="reg-confirmar-senha" type="password" required placeholder="Confirme a senha"
+                                        class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 pr-10 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
                                     <button id="toggleConfirmPassword" type="button"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700">
-                                        <span id="iconConfirmPassword"
-                                            class="material-symbols-outlined text-xl fade-scale active">visibility</span>
+                                        <span id="iconConfirmPassword" class="material-symbols-outlined text-xl fade-scale active">visibility</span>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Código do Condomínio -->
-                            <div class="flex flex-col mb-4">
-                                <label for="codigo-cond"
-                                    class="flex items-center pb-2 text-sm font-medium text-slate-800">
+                            
+                            <div class="flex flex-col sm:col-span-2">
+                                <label class="flex items-center pb-2 text-sm font-medium text-slate-800">
                                     Código do Condomínio
-
                                     <div class="relative group">
-                                        <button type="button"
-                                            class="ml-1.5 text-slate-500 material-symbols-outlined text-base">help_outline</button>
-
-                                        <div
-                                            class="absolute left-1/2 top-full mt-1 hidden w-56 -translate-x-1/2 rounded-md bg-slate-800 px-3 py-2 text-xs text-white shadow-lg group-hover:block">
-                                            Peça ao síndico ou administrador o código de associação do condomínio.
+                                        <button type="button" class="ml-1.5 text-slate-500 material-symbols-outlined text-base">help_outline</button>
+                                        <div class="absolute left-1/2 top-full mt-1 hidden w-56 -translate-x-1/2 rounded-md bg-slate-800 px-3 py-2 text-xs text-white shadow-lg group-hover:block">
+                                            Este código é fornecido pelo administrador do condomínio.
                                         </div>
                                     </div>
                                 </label>
-
-                                <input id="codigo-cond" type="text" required placeholder="Digite seu código"
-                                    class="form-input h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary" />
+                                <input id="codigo-cond" type="text" required placeholder="Digite o código do condomínio"
+                                    class="h-12 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary" />
                             </div>
                         </div>
 
-                        <!-- Botão "Voltar" -->
+                        
                         <div class="mb-4">
                             <a href="../pagInicial/selecaoCadastro.html"
                                 class="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80">
@@ -198,10 +170,10 @@
                             </a>
                         </div>
 
-                        <!-- Botão Registrar -->
+                        
                         <div class="pt-6">
                             <button type="submit"
-                                class="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-white shadow-sm hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                                class="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-white shadow-sm hover:bg-primary/80">
                                 Registrar
                             </button>
                         </div>
@@ -209,8 +181,7 @@
 
                     <p class="mt-6 text-center text-sm text-slate-500">
                         Ao se registrar, você concorda com nossos
-                        <a href="#" class="font-medium text-primary hover:underline">Termos de Serviço e Política de
-                            Privacidade.</a>
+                        <a href="#" class="font-medium text-primary hover:underline">Termos de Serviço e Política de Privacidade.</a>
                     </p>
 
                     <div class="mt-4 text-center text-sm text-slate-500">
@@ -218,25 +189,39 @@
                             <a href="../pagInicial/login.html" class="font-bold text-primary hover:underline">Entrar</a>
                         </p>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JS das máscaras e visibilidade -->
+    
+    <div id="erro-modal" class="fixed inset-0 z-50 items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/50" id="erro-modal-backdrop"></div>
+        <div class="relative mx-4 max-w-md rounded-xl bg-white p-6 shadow-2xl">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-3xl text-red-600">error_outline</span>
+                <h3 class="text-xl font-bold text-slate-800">Erro no cadastro</h3>
+            </div>
+            <p class="text-slate-600 mb-4">Corrija os seguintes campos antes de continuar:</p>
+            <ul id="erro-list" class="space-y-2 text-sm text-slate-700 list-disc list-inside max-h-64 overflow-y-auto"></ul>
+            <button id="erro-modal-close"
+                class="mt-6 w-full rounded-lg bg-primary py-3 font-bold text-white hover:bg-primary/80">
+                Entendi, vou corrigir
+            </button>
+        </div>
+    </div>
+
+    
     <script>
         function setupPasswordToggle(inputId, toggleId, iconId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
             const toggle = document.getElementById(toggleId);
-
-            if (!input || !icon || !toggle) return;
+            if (!input || !toggle || !icon) return;
 
             toggle.addEventListener("click", () => {
                 const isPassword = input.type === "password";
                 input.type = isPassword ? "text" : "password";
-
                 icon.classList.remove("active");
                 setTimeout(() => {
                     icon.textContent = isPassword ? "visibility_off" : "visibility";
@@ -248,49 +233,27 @@
         setupPasswordToggle("reg-senha", "togglePassword", "iconPassword");
         setupPasswordToggle("reg-confirmar-senha", "toggleConfirmPassword", "iconConfirmPassword");
 
-        /* CPF */
+        
         document.getElementById("reg-cpf").addEventListener("input", function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.slice(0, 11);
-
-            if (e.inputType === 'deleteContentBackward') {
-                e.target.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, function (_, a, b, c, d) {
-                    if (!b) return a || '';
-                    if (!c) return a + '.' + b;
-                    if (!d) return a + '.' + b + '.' + c;
-                    return a + '.' + b + '.' + c + '-' + d;
-                });
-                return;
-            }
-
-            if (value.length >= 9) {
-                e.target.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
-            } else if (value.length >= 6) {
-                e.target.value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
-            } else if (value.length >= 3) {
-                e.target.value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
-            } else {
-                e.target.value = value;
-            }
+            let value = e.target.value.replace(/\D/g, '').slice(0, 11);
+            if (value.length >= 9) value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+            else if (value.length >= 6) value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+            else if (value.length >= 3) value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+            e.target.value = value;
         });
 
-        /* Telefone */
-        const telInput = document.getElementById("reg-tel");
-
-        telInput.addEventListener("input", function (e) {
-            let value = e.target.value.replace(/\D/g, "");
-            value = value.slice(0, 11);
-
-            if (value.length === 0) e.target.value = "";
-            else if (value.length <= 2) e.target.value = `(${value}`;
+       
+        document.getElementById("reg-tel").addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, "").slice(0, 11);
+            if (value.length <= 2) e.target.value = value.length > 0 ? `(${value}` : "";
             else if (value.length <= 6) e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
             else if (value.length <= 10) e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
             else e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
         });
     </script>
 
+    
     <script src="cadastroSindico.js"></script>
-
 </body>
 
 </html>

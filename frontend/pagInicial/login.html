@@ -5,74 +5,70 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Condo Connect - Login</title>
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <script id="tailwind-config">
+
+    
+    <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#3B82F6",
-                        "background": "#F3F4F6",
-                        "surface": "#FFFFFF",
-                        "text-primary": "#1F2937",
-                        "text-secondary": "#6B7280",
-                        "border-color": "#E5E7EB"
+                        primary: "#E56A70",
+                        "background-light": "#f6f7f8"
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                },
-            },
+                        display: ["Manrope", "sans-serif"]
+                    }
+                }
+            }
         }
     </script>
+
     <style>
-        body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
 </head>
 
-<body class="bg-background font-display text-text-primary">
-    <div class="flex min-h-screen flex-col justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+<body class="bg-background-light font-display text-slate-800">
+    <div class="flex min-h-screen flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
 
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <div class="flex justify-center items-center gap-3">
                 <div class="bg-primary flex h-12 w-12 items-center justify-center rounded-xl">
                     <span class="material-symbols-outlined text-3xl text-white">apartment</span>
                 </div>
-                <h1 class="text-3xl font-bold text-text-primary">Condo Connect</h1>
+                <h1 class="text-3xl font-bold">Condo Connect</h1>
             </div>
-            <h2 class="mt-6 text-center text-lg text-text-secondary">
+            <h2 class="mt-6 text-center text-lg text-slate-500">
                 Bem-vindo de volta! Faça login na sua conta.
             </h2>
         </div>
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="rounded-xl border border-border-color bg-surface py-8 px-4 shadow-sm sm:px-10">
+            <div class="rounded-xl bg-white border border-slate-300 py-8 px-4 shadow-lg sm:px-10">
 
                 <form id="login-form" class="space-y-6">
                     <div>
-                        <label class="block text-sm font-medium text-text-primary" for="email">Email</label>
+                        <label class="block text-sm font-medium text-slate-800" for="login-email">E-mail</label>
                         <div class="mt-1">
-                            <input autocomplete="email"
-                                class="block w-full h-12 appearance-none rounded-lg border border-border-color px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
-                                id="login-email" name="email" placeholder="seu@email.com" required="" type="email" />
+                            <input id="login-email" type="email" required autocomplete="email" placeholder="seu@email.com"
+                                class="block w-full h-12 rounded-lg border border-slate-300 px-3 py-2 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary" />
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-text-primary" for="password">Senha</label>
+                        <label class="block text-sm font-medium text-slate-800" for="login-senha">Senha</label>
                         <div class="mt-1">
-                            <input autocomplete="current-password"
-                                class="block w-full h-12 appearance-none rounded-lg border border-border-color px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
-                                id="login-senha" name="password" placeholder="Sua senha" required="" type="password" />
+                            <input id="login-senha" type="password" required autocomplete="current-password" placeholder="Sua senha"
+                                class="block w-full h-12 rounded-lg border border-slate-300 px-3 py-2 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary" />
                         </div>
                     </div>
 
@@ -83,31 +79,44 @@
                     </div>
 
                     <div>
-                        <button
-                            class="flex w-full justify-center rounded-lg border border-transparent bg-primary py-3 px-4 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                            type="submit">
+                        <button type="submit"
+                            class="flex w-full justify-center h-12 rounded-lg bg-primary px-4 text-base font-bold text-white shadow-sm hover:bg-primary/80">
                             Entrar
                         </button>
                     </div>
                 </form>
 
-                <!-- TEXTO CADASTRE-SE -->
-                <p class="mt-6 text-center text-sm text-text-secondary">
+                <p class="mt-6 text-center text-sm text-slate-500">
                     Não tem uma conta?
-                    <a href="selecaoCadastro.html"
-                        class="text-primary font-semibold hover:text-primary/80">Cadastre-se</a>
+                    <a href="../pagInicial/selecaoCadastro.html" class="font-semibold text-primary hover:text-primary/80">Cadastre-se</a>
                 </p>
-
             </div>
         </div>
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <p class="text-center text-sm text-text-secondary">
+            <p class="text-center text-sm text-slate-500">
                 © 2025 Condo Connect. Todos os direitos reservados.
             </p>
         </div>
     </div>
 
+    <div id="erro-modal" class="fixed inset-0 z-50 items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/50" id="erro-modal-backdrop"></div>
+        <div class="relative mx-4 max-w-md rounded-xl bg-white p-6 shadow-2xl">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-3xl text-red-600">error_outline</span>
+                <h3 class="text-xl font-bold text-slate-800">Erro no login</h3>
+            </div>
+            <p class="text-slate-600 mb-4">Corrija os seguintes campos antes de continuar:</p>
+            <ul id="erro-list" class="space-y-2 text-sm text-slate-700 list-disc list-inside max-h-64 overflow-y-auto"></ul>
+            <button id="erro-modal-close"
+                class="mt-6 w-full rounded-lg bg-primary py-3 font-bold text-white hover:bg-primary/80">
+                Entendi, vou corrigir
+            </button>
+        </div>
+    </div>
+
+    
     <script src="login.js"></script>
 </body>
 
