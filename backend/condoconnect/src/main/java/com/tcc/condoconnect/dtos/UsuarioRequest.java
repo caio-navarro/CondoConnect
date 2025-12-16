@@ -1,9 +1,12 @@
 package com.tcc.condoconnect.dtos;
 
-public record UsuarioRequest(Long id, String nome, String cpf, String senha, String email, String telefone, String codigoCondominio) {
+import com.tcc.condoconnect.models.EnderecoMorador;
+
+public record UsuarioRequest(Long id, String nome, String cpf, String senha, String email, String telefone,
+        String codigoCondominio, EnderecoMorador enderecoMorador) {
 
     public void validar() {
-        if (senha == null || senha.isBlank() ) {
+        if (senha == null || senha.isBlank()) {
             throw new IllegalArgumentException("A senha precisa ter ao menos 6 digitos!");
         }
 

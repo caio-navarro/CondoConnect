@@ -1,8 +1,9 @@
 package com.tcc.condoconnect.models;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -26,5 +27,7 @@ public class Aviso {
 
     private String titulo;
     private String descricao;
-    private LocalDateTime dataCriacao;
+    private boolean urgente = false;
+    private String categoria;
+    private LocalDate dataCriacao = LocalDate.now();
 }

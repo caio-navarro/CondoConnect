@@ -2,8 +2,10 @@ package com.tcc.condoconnect.contollers;
 
 import com.tcc.condoconnect.dtos.UsuarioRequest;
 import com.tcc.condoconnect.facade.MoradorFacade;
+import com.tcc.condoconnect.models.EnderecoMorador;
 import com.tcc.condoconnect.models.Morador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,13 @@ public class MoradorController {
     @PutMapping
     public Morador atualizar(@RequestBody Morador morador) {
         return moradorFacade.atualizar(morador);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Morador> atualizarEndereco(
+            @PathVariable Long id,
+            @RequestBody EnderecoMorador enderecoDTO) { // ← EnderecoDTO, não EnderecoMorador
+        return moradorFacade.atualizarEndereco(id, enderecoDTO);
     }
 
     @GetMapping("/moradores-pendentes")
