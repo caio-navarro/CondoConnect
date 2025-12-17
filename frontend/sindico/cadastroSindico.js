@@ -1,3 +1,4 @@
+// Funções de estilo de erro
 function setError(input) {
     input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
     input.classList.remove('border-slate-300', 'focus:border-primary', 'focus:ring-primary');
@@ -8,6 +9,7 @@ function clearError(input) {
     input.classList.add('border-slate-300', 'focus:border-primary', 'focus:ring-primary');
 }
 
+// Validações individuais
 function validateNome() {
     const input = document.getElementById("reg-nome");
     if (!input.value.trim()) {
@@ -82,11 +84,17 @@ function validateCodigoCondominio() {
     return true;
 }
 
+// Modal de erros
 function mostrarModalErros(listaErros) {
     const modal = document.getElementById("erro-modal");
     const lista = document.getElementById("erro-list");
     const backdrop = document.getElementById("erro-modal-backdrop");
     const closeBtn = document.getElementById("erro-modal-close");
+
+    if (!modal || !lista || !backdrop || !closeBtn) {
+        console.warn("Modal de erros não encontrado.");
+        return;
+    }
 
     lista.innerHTML = "";
     listaErros.forEach(erro => {
@@ -107,6 +115,7 @@ function mostrarModalErros(listaErros) {
     backdrop.onclick = fecharModal;
 }
 
+// Adiciona validação em tempo real
 const validations = [
     { id: 'reg-nome', fn: validateNome },
     { id: 'reg-email', fn: validateEmail },
@@ -125,7 +134,8 @@ validations.forEach(({ id, fn }) => {
     }
 });
 
-document.getElementById("registro-form").addEventListener("submit", function (event) {
+// Submissão do formulário
+document.getElementById("registro-form").addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const erros = [];
@@ -151,7 +161,6 @@ document.getElementById("registro-form").addEventListener("submit", function (ev
         return;
     }
 
-    
     const cadastroData = {
         nome: document.getElementById("reg-nome").value.trim(),
         cpf: document.getElementById("reg-cpf").value.replace(/\D/g, ''),
@@ -166,84 +175,33 @@ document.getElementById("registro-form").addEventListener("submit", function (ev
     btnSubmit.disabled = true;
     btnSubmit.innerText = "Registrando...";
 
-    fetch("http://localhost:8080/sindico", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cadastroData)
-    })
-    .then(response => {
+    try {
+        const response = await fetch("http://localhost:8080/sindico", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cadastroData)
+        });
+
         if (!response.ok) {
-            return response.text().then(msg => { throw new Error(msg || "Erro no servidor"); });
+            const erroMsg = await response.text();
+            throw new Error(erroMsg || "Erro ao cadastrar síndico.");
         }
-        return response.text();
-    })
-    .then(() => {
-        alert("Cadastro realizado com sucesso! Aguarde aprovação do administrador.");
-        window.location.href = "../pagInicial/pedidoPendente.html";
-    })
-    .catch(error => {
+
+        // Sucesso
+        mostrarModalErros(["Cadastro realizado com sucesso! Aguarde aprovação do administrador."], true);
+        setTimeout(() => {
+            window.location.href = "../pagInicial/pedidoPendente.html";
+        }, 2000); // Delay para ver a mensagem de sucesso
+
+    } catch (error) {
         console.error("Erro:", error);
-        alert("Erro ao cadastrar: " + error.message);
+        mostrarModalErros(["Erro ao cadastrar: " + error.message]);
+
         btnSubmit.disabled = false;
         btnSubmit.innerText = textoOriginal;
 
-        
+        // Limpa senhas em caso de erro
         document.getElementById("reg-senha").value = "";
         document.getElementById("reg-confirmar-senha").value = "";
-    });
-});localStorage.clear();
-
-document.getElementById("login-form").addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const email = document.getElementById("login-email").value.trim();
-    const senha = document.getElementById("login-senha").value;
-
-    if (!email || !senha) {
-        alert("Preencha todos os campos.");
-        return;
-    }
-
-    try {
-        const res = await fetch("http://localhost:8080/auth", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, senha })
-        });
-
-        if (!res.ok) {
-            const erro = await res.text();
-            alert("Login inválido.");
-            return;
-        }
-
-        const usuario = await res.json();
-
-        localStorage.setItem("idUsuario", usuario.idUsuario);
-        localStorage.setItem("nome", usuario.nome);
-        localStorage.setItem("role", usuario.role);
-
-        if (usuario.role == "MORADOR" || usuario.role == "SINDICO") {
-            if (usuario.statusUsuario == "PENDENTE" || usuario.statusUsuario == "INATIVO") {
-                window.location.href = "../pagInicial/pedidoPendente.html";
-                return;
-            }
-
-            window.location.href = "../morador/completarEndereco.html";
-        } else {
-            window.location.href = "../condominio/dashboard.html";
-        }
-
-        /*
-        switch (usuario.role) {
-            case "MORADOR" || "SINDICO":
-                window.location.href = "../pagInicial/pedidoPendente.html";
-                break;
-            default:
-                window.location.href = "../condominio/dashboard.html";
-        } */
-
-    } catch (error) {
-        alert("Erro ao conectar ao servidor.");
     }
 });
