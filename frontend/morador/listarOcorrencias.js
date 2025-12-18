@@ -177,14 +177,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Handler do botão "Carregar mais"
-    if (btnCarregarMais) {
-        btnCarregarMais.addEventListener('click', async function () {
-            // Implementar paginação aqui se necessário
-            alert('Funcionalidade de carregar mais em desenvolvimento');
-        });
-    }
-
     // Adicionar CSS para line-clamp
     const style = document.createElement('style');
     style.textContent = `
