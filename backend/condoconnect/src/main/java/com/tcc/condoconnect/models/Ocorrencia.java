@@ -31,5 +31,4 @@ public class Ocorrencia {
     private String titulo;
     private String descricao;
     private StatusOcorrencia status = StatusOcorrencia.ABERTO;
-    private LocalDateTime dataCriacao;
 }

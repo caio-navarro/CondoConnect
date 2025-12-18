@@ -38,14 +38,17 @@ public class OcorrenciaApplication {
                 .orElseThrow(() -> new RuntimeException("Morador não encontrado!"));
 
         Ocorrencia ocorrencia = new Ocorrencia();
-        ocorrencia.setId(ocorrenciaRequest.id());
         ocorrencia.setTitulo(ocorrenciaRequest.titulo());
+        ocorrencia.setCategoria(ocorrenciaRequest.categoria().toUpperCase());
         ocorrencia.setDescricao(ocorrenciaRequest.descricao());
-        ocorrencia.setDataCriacao(ocorrenciaRequest.dataCriacao());
         ocorrencia.setCondominio(condominio);
         ocorrencia.setMorador(morador);
 
         return ocorrenciaRepository.save(ocorrencia);
+    }
+
+    public List<Ocorrencia> listarPorCondominio(Long idCondominio) {
+        return ocorrenciaRepository.findByCondominioId(idCondominio);
     }
 
     public void deletar(Long id) {

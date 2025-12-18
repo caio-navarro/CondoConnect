@@ -36,59 +36,8 @@
 </head>
 
 <body class="font-display bg-background-light dark:bg-background-dark text-[#111518] dark:text-gray-200">
-    <div class="relative flex min-h-screen w-full flex-col group/design-root" x-data="{ 
-        open: false,
-        showModal: false,
-        comunicados: [
-            {
-                id: 1,
-                titulo: 'Manutenção do Elevador',
-                descricao: 'O elevador social passará por manutenção preventiva no dia 20/12',
-                categoria: 'Manutenção',
-                data: '2025-12-10',
-                urgente: true
-            },
-            {
-                id: 2,
-                titulo: 'Festa de Fim de Ano',
-                descricao: 'Convite para a confraternização de fim de ano no salão de festas',
-                categoria: 'Evento',
-                data: '2025-12-08',
-                urgente: false
-            }
-        ],
-        novoComunicado: {
-            titulo: '',
-            descricao: '',
-            categoria: 'Informação',
-            urgente: false
-        },
-        resetForm() {
-            this.novoComunicado = {
-                titulo: '',
-                descricao: '',
-                categoria: 'Informação',
-                urgente: false
-            };
-        },
-        salvarComunicado() {
-            if (this.novoComunicado.titulo && this.novoComunicado.descricao) {
-                this.comunicados.unshift({
-                    id: Date.now(),
-                    ...this.novoComunicado,
-                    data: new Date().toISOString().split('T')[0]
-                });
-                this.resetForm();
-                this.showModal = false;
-            }
-        },
-        deletarComunicado(id) {
-            this.comunicados = this.comunicados.filter(c => c.id !== id);
-        },
-        formatarData(data) {
-            return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR');
-        }
-    }">
+    <div x-data="comunicadosApp">
+
         <div class="flex flex-1">
             <div @keydown.window.escape="open = false" class="lg:hidden" x-show="open">
                 <aside :class="open ? 'translate-x-0' : '-translate-x-full'"
@@ -249,7 +198,7 @@
                                                 <span class="inline-flex items-center gap-1">
                                                     <span
                                                         class="material-symbols-outlined !text-base">calendar_today</span>
-                                                    <span x-text="formatarData(comunicado.data)"></span>
+                                                    <span x-text="formatarData(comunicado.dataCriacao)"></span>
                                                 </span>
                                             </div>
                                         </div>
@@ -332,6 +281,10 @@
             </div>
         </div>
     </div>
+
+    <script src="dadosUsuario.js"></script>
+    <script src="comunicadosApp.js"></script>
+
 </body>
 
 </html>

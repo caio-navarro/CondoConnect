@@ -1,11 +1,9 @@
 package com.tcc.condoconnect.applications;
 
+import com.tcc.condoconnect.dtos.CondominioResponse;
 import com.tcc.condoconnect.dtos.LoginRequest;
 import com.tcc.condoconnect.dtos.LoginResponse;
-import com.tcc.condoconnect.enums.StatusUsuario;
 import com.tcc.condoconnect.models.Condominio;
-import com.tcc.condoconnect.models.Morador;
-import com.tcc.condoconnect.models.Sindico;
 import com.tcc.condoconnect.repositories.CondominioRepository;
 import com.tcc.condoconnect.repositories.MoradorRepository;
 import com.tcc.condoconnect.repositories.SindicoRepository;
@@ -21,36 +19,76 @@ public class AuthApplication {
     private MoradorRepository moradorRepository;
 
     @Autowired
-    private CondominioRepository condominioRepository;
+    private SindicoRepository sindicoRepository;
 
     @Autowired
-    private SindicoRepository sindicoRepository;
+    private CondominioRepository condominioRepository;
 
     public ResponseEntity<?> login(LoginRequest loginRequest) {
         String email = loginRequest.email();
         String senha = loginRequest.senha();
 
-        // Morador
-        var morador = moradorRepository.findByEmailAndSenha(email, senha);
-        if (morador.isPresent()) {
-            var m = morador.get();
-            return ResponseEntity.ok(new LoginResponse(m.getId(), m.getNome(), m.getRole(), m.getStatusUsuario()));
+        // ---------- MORADOR ----------
+        var moradorOpt = moradorRepository.findByEmailAndSenha(email, senha);
+        if (moradorOpt.isPresent()) {
+            var m = moradorOpt.get();
+
+            CondominioResponse condominio = mapCondominio(m.getCondominio());
+
+            return ResponseEntity.ok(
+                    new LoginResponse(
+                            m.getId(),
+                            m.getNome(),
+                            m.getRole(),
+                            m.getStatusUsuario(),
+                            condominio));
         }
 
-        // Síndico
-        var sindico = sindicoRepository.findByEmailAndSenha(email, senha);
-        if (sindico.isPresent()) {
-            var s = sindico.get();
-            return ResponseEntity.ok(new LoginResponse(s.getId(), s.getNome(), s.getRole(), s.getStatusUsuario()));
+        // ---------- SÍNDICO ----------
+        var sindicoOpt = sindicoRepository.findByEmailAndSenha(email, senha);
+        if (sindicoOpt.isPresent()) {
+            var s = sindicoOpt.get();
+
+            CondominioResponse condominio = mapCondominio(s.getCondominio());
+
+            return ResponseEntity.ok(
+                    new LoginResponse(
+                            s.getId(),
+                            s.getNome(),
+                            s.getRole(),
+                            s.getStatusUsuario(),
+                            condominio));
         }
 
-        // Condomínio
-        var condominio = condominioRepository.findByEmailAndSenha(email, senha);
-        if (condominio.isPresent()) {
-            var c = condominio.get();
-            return ResponseEntity.ok(new LoginResponse(c.getId(), c.getNome(), c.getRole(), c.getStatusUsuario()));
+        // ---------- CONDOMÍNIO ----------
+        var condominioOpt = condominioRepository.findByEmailAndSenha(email, senha);
+        if (condominioOpt.isPresent()) {
+            var c = condominioOpt.get();
+
+            return ResponseEntity.ok(
+                    new LoginResponse(
+                            c.getId(),
+                            c.getNome(),
+                            c.getRole(),
+                            c.getStatusUsuario(),
+                            null));
         }
 
-        return ResponseEntity.status(401).body(Map.of("erro", "Email ou senha inválidos"));
+        // ---------- LOGIN INVÁLIDO ----------
+        return ResponseEntity
+                .status(401)
+                .body(Map.of("erro", "Email ou senha inválidos"));
+    }
+
+    // ===============================
+    // MÉTODO AUXILIAR
+    // ===============================
+    private CondominioResponse mapCondominio(Condominio condominio) {
+        if (condominio == null) {
+            return null;
+        }
+        return new CondominioResponse(
+                condominio.getId(),
+                condominio.getNome());
     }
 }
