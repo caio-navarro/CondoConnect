@@ -26,6 +26,6 @@ public class Sindico {
     private StatusUsuario statusUsuario = StatusUsuario.PENDENTE;
 
     @OneToOne
-    @JoinColumn(name = "id_condominio")
+    @JoinColumn(name = "id_condominio", nullable = true)
     private Condominio condominio;
 }

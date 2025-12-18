@@ -7,6 +7,9 @@ import com.tcc.condoconnect.models.Condominio;
 import com.tcc.condoconnect.models.Sindico;
 import com.tcc.condoconnect.repositories.CondominioRepository;
 import com.tcc.condoconnect.repositories.SindicoRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -61,8 +64,15 @@ public class SindicoApplication {
         return sindicoRepository.findAllByStatusUsuario(StatusUsuario.PENDENTE);
     }
 
+    @Transactional
     public void deletar(Long id) {
-        sindicoRepository.deleteById(id);
+        Sindico sindico = sindicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Síndico não encontrado"));
+
+        sindico.setCondominio(null);
+        sindicoRepository.save(sindico);
+
+        sindicoRepository.delete(sindico);
     }
 
     public Sindico atualizar(Sindico sindico) {

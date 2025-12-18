@@ -1,4 +1,4 @@
 package com.tcc.condoconnect.dtos;
 
-public record CondominioResponse(Long id, String nome) {
+public record CondominioResponse(Long id, String nome, String codigo) {
 }

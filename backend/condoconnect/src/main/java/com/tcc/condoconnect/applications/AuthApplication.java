@@ -65,13 +65,18 @@ public class AuthApplication {
         if (condominioOpt.isPresent()) {
             var c = condominioOpt.get();
 
+            CondominioResponse condominio = new CondominioResponse(
+                    c.getId(),
+                    c.getNome(),
+                    c.getCodigo());
+
             return ResponseEntity.ok(
                     new LoginResponse(
                             c.getId(),
                             c.getNome(),
                             c.getRole(),
                             c.getStatusUsuario(),
-                            null));
+                            condominio));
         }
 
         // ---------- LOGIN INVÁLIDO ----------
@@ -89,6 +94,7 @@ public class AuthApplication {
         }
         return new CondominioResponse(
                 condominio.getId(),
-                condominio.getNome());
+                condominio.getNome(),
+                condominio.getCodigo());
     }
 }
