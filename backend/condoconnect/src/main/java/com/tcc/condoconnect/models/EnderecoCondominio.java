@@ -1,13 +1,15 @@
 package com.tcc.condoconnect.models;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Embeddable
 public class EnderecoCondominio {
+
     private String logradouro;
     private String numero;
     private String bairro;
