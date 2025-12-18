@@ -85,13 +85,6 @@
                         <p class="text-sm font-medium">Dashboard</p>
                     </a>
 
-                    <!-- Moradores -->
-                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300
-                        hover:bg-slate-100 dark:hover:bg-slate-800" href="gestaoMoradores.html">
-                        <span class="material-symbols-outlined">group</span>
-                        <p class="text-sm font-medium">Moradores</p>
-                    </a>
-
                     <!-- Síndicos -->
                     <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300
                         hover:bg-slate-100 dark:hover:bg-slate-800" href="aprovarSindicos.html">
@@ -110,7 +103,7 @@
                     <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300
                         hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
                         <span class="material-symbols-outlined">campaign</span>
-                        <p class="text-sm font-medium">Avisos</p>
+                        <p class="text-sm font-medium">Comunicados</p>
                     </a>
 
                     <!-- CÓDIGOS (ATIVO) -->
@@ -124,7 +117,7 @@
                     <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300
                         hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
                         <span class="material-symbols-outlined">credit_card</span>
-                        <p class="text-sm font-medium">Finanças</p>
+                        <p class="text-sm font-medium">Assinatura</p>
                     </a>
                 </nav>
             </div>
@@ -171,14 +164,6 @@
                             <p class="text-sm font-medium">Dashboard</p>
                         </a>
 
-                        <!-- Moradores -->
-                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg 
-                            text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
-                            href="aprovarMoradores.html">
-                            <span class="material-symbols-outlined">group</span>
-                            <p class="text-sm font-medium">Moradores</p>
-                        </a>
-
                         <!-- Síndicos -->
                         <a class="flex items-center gap-3 px-3 py-2 rounded-lg 
                             text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -198,7 +183,7 @@
                         <a class="flex items-center gap-3 px-3 py-2 rounded-lg 
                             text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
                             <span class="material-symbols-outlined">campaign</span>
-                            <p class="text-sm font-medium">Avisos</p>
+                            <p class="text-sm font-medium">Comunicados</p>
                         </a>
 
                         <!-- CÓDIGOS (ATIVO) -->
@@ -210,9 +195,10 @@
                         </a>
 
                         <a class="flex items-center gap-3 px-3 py-2 rounded-lg 
-                            text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+                            text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="assinatura.html">
                             <span class="material-symbols-outlined">credit_card</span>
-                            <p class="text-sm font-medium">Finanças</p>
+                            <p class="text-sm font-medium">Assinatura</p>
                         </a>
 
                     </nav>
@@ -271,7 +257,7 @@
                                 class="w-full flex items-center justify-center h-24 sm:h-28 bg-gray-100 dark:bg-background-dark rounded-lg px-2 sm:px-4">
                                 <p
                                     class="font-mono text-4xl sm:text-5xl md:text-6xl tracking-[0.15em] sm:tracking-[0.2em] text-gray-800 dark:text-gray-200 font-semibold">
-                                    B4K-L9P
+
                                 </p>
                             </div>
 
@@ -297,7 +283,7 @@
                             </div>
 
                             <p class="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-                                O código é válido para uso único e expira em 24 horas. Compartilhe com segurança.
+                                O código é de uso exclusivo para moradores e síndicos. Compartilhe com segurança.
                             </p>
 
                         </div>
@@ -305,6 +291,8 @@
                 </main>
             </div>
         </div>
+
+        <script src="geradorCodigo.js"></script>
 
 </body>
 

@@ -26,6 +26,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
 
         const usuario = await res.json();
 
+        // ---------- DADOS BÁSICOS ----------
         localStorage.setItem("id", usuario.id);
         localStorage.setItem("nome", usuario.nome);
         localStorage.setItem("email", usuario.email);
@@ -33,11 +34,24 @@ document.getElementById("login-form").addEventListener("submit", async function 
         localStorage.setItem("role", usuario.role);
         localStorage.setItem("statusUsuario", usuario.statusUsuario);
 
-        if (usuario.condominio?.id) {
-            localStorage.setItem("idCondominio", usuario.condominio.id);
-            localStorage.setItem("nomeCondominio", usuario.condominio.nome || "");
+        // ---------- CONDOMÍNIO (CORRIGIDO) ----------
+        if (usuario.condominio) {
+
+            if (usuario.condominio.id) {
+                localStorage.setItem("idCondominio", usuario.condominio.id);
+            }
+
+            if (usuario.condominio.codigo) {
+                localStorage.setItem("codCondominio", usuario.condominio.codigo);
+            }
+
+            localStorage.setItem(
+                "nomeCondominio",
+                usuario.condominio.nome || ""
+            );
         }
 
+        // ---------- ENDEREÇO ----------
         const temEndereco = !!(
             usuario.endereco &&
             usuario.endereco.rua &&
@@ -50,9 +64,10 @@ document.getElementById("login-form").addEventListener("submit", async function 
             role: usuario.role,
             status: usuario.statusUsuario,
             temEndereco,
-            condominio: usuario.condominio?.id
+            condominio: usuario.condominio || null
         });
 
+        // ---------- MORADOR ----------
         if (usuario.role === "MORADOR") {
 
             if (usuario.statusUsuario === "PENDENTE" || usuario.statusUsuario === "INATIVO") {
@@ -77,7 +92,6 @@ document.getElementById("login-form").addEventListener("submit", async function 
                 return;
             }
 
-            // Síndico NÃO precisa completar endereço
             window.location.href = "../sindico/dashboard.html";
             return;
         }
