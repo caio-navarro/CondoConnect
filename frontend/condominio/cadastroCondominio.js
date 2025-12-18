@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. MÁSCARAS DE INPUT
-   ========================================================================== */
+
 function maskCNPJ(input) {
     let value = input.value.replace(/\D/g, '').slice(0, 14);
     if (value.length <= 2) input.value = value;
@@ -24,38 +22,21 @@ function maskCEP(input) {
     else input.value = value.replace(/(\d{5})(\d{0,3})/, '$1-$2');
 }
 
-// Aplicar máscaras
-const elCnpj = document.getElementById('reg-cnpj');
-if (elCnpj) elCnpj.addEventListener('input', (e) => maskCNPJ(e.target));
 
-const elTel = document.getElementById('reg-tel');
-if (elTel) elTel.addEventListener('input', (e) => maskTel(e.target));
+document.getElementById('reg-cnpj')?.addEventListener('input', (e) => maskCNPJ(e.target));
+document.getElementById('reg-tel')?.addEventListener('input', (e) => maskTel(e.target));
+document.getElementById('reg-cep')?.addEventListener('input', (e) => maskCEP(e.target));
 
-const elCep = document.getElementById('reg-cep');
-if (elCep) elCep.addEventListener('input', (e) => maskCEP(e.target));
-
-/* ==========================================================================
-   2. FUNÇÕES VISUAIS DE ERRO
-   ========================================================================== */
-function setError(input, message) {
-    const formGroup = input.parentElement;
-    const parent = formGroup.classList.contains('relative') ? formGroup.parentElement : formGroup;
-
+function setError(input) {
     input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
-    input.classList.remove('border-slate-300', 'focus:border-green-500', 'focus:ring-green-500');
+    input.classList.remove('border-slate-300', 'focus:border-green-600', 'focus:ring-green-600');
 }
 
 function clearError(input) {
-    const formGroup = input.parentElement;
-    const parent = formGroup.classList.contains('relative') ? formGroup.parentElement : formGroup;
-
     input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
-    input.classList.add('border-slate-300', 'focus:border-green-500', 'focus:ring-green-500');
+    input.classList.add('border-slate-300', 'focus:border-green-600', 'focus:ring-green-600');
 }
 
-/* ==========================================================================
-   3. VALIDAÇÕES INDIVIDUAIS
-   ========================================================================== */
 function validateNome() {
     const input = document.getElementById("reg-nome");
     if (!input.value.trim()) {
@@ -69,11 +50,7 @@ function validateNome() {
 function validateCNPJ() {
     const input = document.getElementById("reg-cnpj");
     const cleanValue = input.value.replace(/\D/g, '');
-    if (!cleanValue) {
-        setError(input);
-        return false;
-    }
-    if (cleanValue.length !== 14) {
+    if (!cleanValue || cleanValue.length !== 14) {
         setError(input);
         return false;
     }
@@ -114,9 +91,9 @@ function validateSenha() {
 }
 
 function validateConfirmarSenha() {
-    const senha = document.getElementById("reg-senha");
+    const senha = document.getElementById("reg-senha").value;
     const confirmar = document.getElementById("reg-confirmar-senha");
-    if (!confirmar.value || confirmar.value !== senha.value) {
+    if (!confirmar.value || confirmar.value !== senha) {
         setError(confirmar);
         return false;
     }
@@ -127,7 +104,7 @@ function validateConfirmarSenha() {
 function validateCEP() {
     const input = document.getElementById("reg-cep");
     const cleanValue = input.value.replace(/\D/g, '');
-    if (cleanValue.length !== 8) {
+    if (!cleanValue || cleanValue.length !== 8) {
         setError(input);
         return false;
     }
@@ -145,9 +122,6 @@ function validateNumero() {
     return true;
 }
 
-/* ==========================================================================
-   4. INTEGRAÇÃO COM VIACEP
-   ========================================================================== */
 const ruaInput = document.getElementById("reg-rua");
 const bairroInput = document.getElementById("reg-bairro");
 const cidadeInput = document.getElementById("reg-cidade");
@@ -191,26 +165,22 @@ function limparEndereco() {
     estadoInput.value = "";
 }
 
-const inputCepRef = document.getElementById("reg-cep");
-if (inputCepRef) {
-    inputCepRef.addEventListener("blur", () => {
-        const cep = inputCepRef.value.replace(/\D/g, '');
-        if (cep.length === 8) {
-            buscarCEP(cep);
-        } else {
-            limparEndereco();
-        }
-    });
-}
+document.getElementById("reg-cep")?.addEventListener("blur", () => {
+    const cep = document.getElementById("reg-cep").value.replace(/\D/g, '');
+    if (cep.length === 8) buscarCEP(cep);
+    else limparEndereco();
+});
 
-/* ==========================================================================
-   5. MODAL DE ERROS
-   ========================================================================== */
 function mostrarModalErros(listaErros) {
     const modal = document.getElementById("erro-modal");
     const lista = document.getElementById("erro-list");
     const backdrop = document.getElementById("erro-modal-backdrop");
     const closeBtn = document.getElementById("erro-modal-close");
+
+    if (!modal || !lista || !backdrop || !closeBtn) {
+        console.warn("Modal de erros não encontrado.");
+        return;
+    }
 
     lista.innerHTML = "";
     listaErros.forEach(erro => {
@@ -231,9 +201,6 @@ function mostrarModalErros(listaErros) {
     backdrop.onclick = fecharModal;
 }
 
-/* ==========================================================================
-   6. VALIDAÇÃO AO SAIR DO CAMPO (feedback instantâneo)
-   ========================================================================== */
 const validations = [
     { id: 'reg-nome', fn: validateNome },
     { id: 'reg-cnpj', fn: validateCNPJ },
@@ -253,10 +220,7 @@ validations.forEach(({ id, fn }) => {
     }
 });
 
-/* ==========================================================================
-   7. ENVIO DO FORMULÁRIO
-   ========================================================================== */
-document.getElementById("registro-form").addEventListener("submit", function (event) {
+document.getElementById("registro-form").addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const erros = [];
@@ -291,7 +255,6 @@ document.getElementById("registro-form").addEventListener("submit", function (ev
         return;
     }
 
-    // Todos os campos válidos → envio
     const cadastroData = {
         nome: document.getElementById("reg-nome").value.trim(),
         cnpj: document.getElementById("reg-cnpj").value.replace(/\D/g, ''),
@@ -314,30 +277,33 @@ document.getElementById("registro-form").addEventListener("submit", function (ev
     btnSubmit.disabled = true;
     btnSubmit.innerText = "Registrando...";
 
-    fetch("http://localhost:8080/condominio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cadastroData)
-    })
-    .then(response => {
+    try {
+        const response = await fetch("http://localhost:8080/condominio", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cadastroData)
+        });
+
         if (!response.ok) {
-            return response.text().then(msg => { throw new Error(msg || "Erro no servidor"); });
+            const erroMsg = await response.text();
+            throw new Error(erroMsg || "Erro ao cadastrar condomínio.");
         }
-        return response.text();
-    })
-    .then(() => {
-        alert("Cadastro realizado com sucesso! Redirecionando para login...");
+
+       
+        mostrarModalErros(["Cadastro realizado com sucesso! Redirecionando para login..."]);
         setTimeout(() => {
             window.location.href = "../pagInicial/login.html";
-        }, 1000);
-    })
-    .catch(error => {
+        }, 2000); 
+
+    } catch (error) {
         console.error("Erro:", error);
-        alert("Erro ao cadastrar: " + error.message);
+        mostrarModalErros(["Erro ao cadastrar: " + error.message]);
+
         btnSubmit.disabled = false;
         btnSubmit.innerText = textoOriginal;
 
+        
         document.getElementById("reg-senha").value = "";
         document.getElementById("reg-confirmar-senha").value = "";
-    });
+    }
 });

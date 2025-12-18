@@ -6,24 +6,25 @@ async function carregarSindicosPendentes() {
     const lista = document.getElementById("lista-sindicos");
 
     if (!lista) {
-        console.error("Erro: elemento #lista-sindicos não encontrado no HTML.");
+        mostrarModalErros(["Elemento #lista-sindicos não encontrado no HTML."]);
         return;
     }
 
-    lista.innerHTML = "<p class='text-sm text-gray-500'>Carregando...</p>";
+    lista.innerHTML = "<p class='text-sm text-gray-500 dark:text-gray-400'>Carregando...</p>";
 
     try {
         const response = await fetch("http://localhost:8080/sindico/pendentes");
 
         if (!response.ok) {
-            throw new Error("Erro ao buscar síndicos pendentes");
+            const erroMsg = await response.text();
+            throw new Error(erroMsg || "Erro ao buscar síndicos pendentes");
         }
 
         const dados = await response.json();
         lista.innerHTML = "";
 
         if (dados.length === 0) {
-            lista.innerHTML = `<p class='text-gray-500'>Nenhum síndico pendente.</p>`;
+            lista.innerHTML = `<p class='text-text-light-secondary dark:text-text-dark-secondary'>Nenhum síndico pendente.</p>`;
             return;
         }
 
@@ -39,8 +40,8 @@ async function carregarSindicosPendentes() {
         });
 
     } catch (erro) {
-        console.error(erro);
-        lista.innerHTML = `<p class='text-red-500'>Erro ao carregar lista de síndicos.</p>`;
+        lista.innerHTML = `<p class='text-danger'>Erro ao carregar lista de síndicos.</p>`;
+        mostrarModalErros([erro.message]);
     }
 }
 
@@ -52,12 +53,12 @@ function criarCardSindico(sindico, foto) {
 
     div.innerHTML = `
         <div class="flex items-center gap-4">
-            <img class="h-14 w-14 rounded-full object-cover" src="${foto}" />
+            <img class="h-14 w-14 rounded-full object-cover" src="${foto}" alt="Foto do síndico" />
 
             <div>
                 <p class="font-bold">${sindico.nome}</p>
-                <p class="text-sm text-text-light-secondary dark:text-dark-secondary">
-                    CPF: ${sindico.cpf || "Erro ao informar CPF"}
+                <p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">
+                    CPF: ${sindico.cpf || "Não informado"}
                 </p>
             </div>
         </div>
@@ -87,7 +88,7 @@ async function aprovarSindico(id) {
 }
 
 async function recusarSindico(id) {
-    await atualizarStatus(id, "");
+    await atualizarStatus(id, "RECUSADO"); // Ajuste o status conforme seu backend
 }
 
 async function atualizarStatus(id, status) {
@@ -99,13 +100,45 @@ async function atualizarStatus(id, status) {
         });
 
         if (!response.ok) {
-            throw new Error("Erro ao atualizar status do síndico");
+            const erroMsg = await response.text();
+            throw new Error(erroMsg || "Erro ao atualizar status do síndico");
         }
 
-        carregarSindicosPendentes();
+        carregarSindicosPendentes(); // Recarrega a lista
 
     } catch (erro) {
-        console.error(erro);
-        alert("Erro ao atualizar status.");
+        mostrarModalErros([erro.message]);
     }
+}
+
+/* ----- Modal de Erros (reutilizável) ----- */
+
+function mostrarModalErros(listaErros) {
+    const modal = document.getElementById("erro-modal");
+    const lista = document.getElementById("erro-list");
+    const backdrop = document.getElementById("erro-modal-backdrop");
+    const closeBtn = document.getElementById("erro-modal-close");
+
+    if (!modal || !lista || !backdrop || !closeBtn) {
+        console.warn("Modal de erros não encontrado.");
+        return;
+    }
+
+    lista.innerHTML = "";
+    listaErros.forEach(erro => {
+        const li = document.createElement("li");
+        li.textContent = erro;
+        lista.appendChild(li);
+    });
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    const fecharModal = () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    };
+
+    closeBtn.onclick = fecharModal;
+    backdrop.onclick = fecharModal;
 }

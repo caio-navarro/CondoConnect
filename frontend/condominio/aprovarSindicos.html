@@ -10,8 +10,7 @@
 
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script id="tailwind-config">
@@ -59,7 +58,6 @@
             background-size: 1.2rem;
         }
     </style>
-
 
     <style>
         .material-symbols-outlined {
@@ -280,6 +278,23 @@
         </main>
     </div>
 
+    <!-- Modal de Erros -->
+    <div id="erro-modal" class="fixed inset-0 z-50 items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/50" id="erro-modal-backdrop"></div>
+        <div class="relative mx-4 max-w-md rounded-xl bg-white dark:bg-card-dark p-6 shadow-2xl">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-3xl text-danger">error_outline</span>
+                <h3 class="text-xl font-bold text-text-light-primary dark:text-text-dark-primary">Erro</h3>
+            </div>
+            <p class="text-text-light-secondary dark:text-text-dark-secondary mb-4">Ocorreu um erro ao processar a solicitação:</p>
+            <ul id="erro-list" class="space-y-2 text-sm text-text-light-primary dark:text-text-dark-primary list-disc list-inside max-h-64 overflow-y-auto"></ul>
+            <button id="erro-modal-close"
+                class="mt-6 w-full rounded-lg bg-primary py-3 font-bold text-white hover:bg-primary/80">
+                Entendi
+            </button>
+        </div>
+    </div>
+
     <!-- SCRIPT MENU -->
     <script>
         function toggleMobileMenu() {
@@ -292,7 +307,6 @@
     </script>
 
     <script src="sindicos.js"></script>
-
 </body>
 
 </html>
